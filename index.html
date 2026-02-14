@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursos de Tecnologia</title>
+    <!-- Importando Fonte Tecnológica (Rajdhani) e Ícones -->
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            /* Paleta Neutra Tecnológica */
+            --left-bg: rgba(248, 250, 252, 0.95); 
+            --right-bg: rgba(30, 41, 59, 0.95);   
+            
+            --text-light: #f8fafc;
+            --text-dark: #1e293b;
+            
+            --accent-gold: #d4af37;
+            --accent-blue: #94a3b8; 
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            height: 100vh;
+            overflow: hidden;
+            background: #1e293b;
+            position: relative;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            z-index: 10; /* Conteúdo acima do fundo */
+        }
+
+        /* --- Foguetes Tecnológicos (Animação de Fundo) --- */
+        .rocket-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Deixa clicar através deles */
+            z-index: 1; /* Ficam atrás do conteúdo principal, mas visíveis */
+            overflow: hidden;
+        }
+
+        .rocket {
+            position: absolute;
+            bottom: -50px;
+            color: rgba(212, 175, 55, 0.4); /* Dourado translúcido */
+            font-size: 2rem;
+            animation: flyUp linear forwards;
+            filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.5));
+        }
+
+        @keyframes flyUp {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-120vh) rotate(0deg); /* Sobe até sair da tela */
+                opacity: 0;
+            }
+        }
+
+        /* --- Configuração Geral dos Lados (Estático 50/50) --- */
+        .split {
+            position: absolute;
+            width: 50%; /* Largura fixa */
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            z-index: 10;
+        }
+
+        /* Títulos */
+        h1 {
+            font-size: 2.2rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            white-space: nowrap;
+            padding-bottom: 1rem;
+            z-index: 2;
+            font-weight: 700;
+            position: relative;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        h1::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent-gold);
+            margin: 10px auto 0;
+            transition: width 0.4s ease;
+        }
+
+        .split:hover h1::after {
+            width: 120px;
+        }
+
+        /* Ícones Grandes */
+        .icon-large {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            z-index: 2;
+            transition: transform 0.5s ease;
+        }
+
+        .split:hover .icon-large {
+            transform: scale(1.1) translateY(-10px);
+        }
+
+        /* Botões */
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            padding: 1rem 3rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 1px solid;
+            z-index: 2;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            margin-top: 1rem;
+            cursor: pointer;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: var(--accent-gold);
+            transition: left 0.4s ease;
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            left: 0;
+        }
+
+        /* --- Lado Esquerdo (Informática) --- */
+        .left {
+            left: 0;
+            background: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&auto=format&fit=crop&w=1352&q=80') center center no-repeat;
+            background-size: cover;
+            border-right: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .left::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: var(--left-bg);
+            /* Padrão de Grid Tecnológico Sutil */
+            background-image: 
+                linear-gradient(rgba(148, 163, 184, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(148, 163, 184, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .left h1 { color: var(--text-dark); }
+        .left .icon-large { color: var(--text-dark); }
+        .left .btn { color: var(--text-dark); border-color: var(--text-dark); }
+        .left .btn:hover { color: #fff; border-color: var(--accent-gold); }
+
+        /* --- Lado Direito (Sistemas) --- */
+        .right {
+            right: 0;
+            background: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center center no-repeat;
+            background-size: cover;
+            border-left: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .right::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: var(--right-bg);
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .right h1 { color: var(--text-light); }
+        .right .icon-large { color: var(--accent-gold); }
+        .right .btn { color: var(--accent-gold); border-color: var(--accent-gold); }
+        .right .btn:hover { color: var(--text-dark); }
+
+        /* --- Responsividade --- */
+        @media(max-width: 800px) {
+            h1 {
+                font-size: 1.5rem;
+                padding: 0 20px;
+            }
+            .icon-large { font-size: 3rem; }
+            .split {
+                width: 100%;
+                height: 50%;
+                position: relative;
+            }
+            .right { border-left: none; border-top: 1px solid rgba(255,255,255,0.1); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Container para os Foguetes Animados -->
+    <div class="rocket-container" id="rocketContainer"></div>
+
+    <div class="container">
+        
+        <!-- Lado Esquerdo -->
+        <div class="split left">
+            <i class="fas fa-globe icon-large"></i> 
+            <h1>Informática para Internet</h1>
+            <a href="info.html" class="btn">Acessar</a>
+        </div>
+
+        <!-- Lado Direito -->
+        <div class="split right">
+            <i class="fas fa-terminal icon-large"></i> 
+            <h1>Desenv. de Sistemas</h1>
+            <a href="ds.html" class="btn">Acessar</a>
+        </div>
+
+    </div>
+
+    <script>
+        // Script para gerar foguetes aleatórios
+        function createRocket() {
+            const container = document.getElementById('rocketContainer');
+            const rocket = document.createElement('i');
+            
+            // Escolhe aleatoriamente entre ícone de foguete ou nave
+            const icons = ['fa-rocket', 'fa-space-shuttle'];
+            const randomIcon = icons[Math.floor(Math.random() * icons.length)];
+            
+            rocket.classList.add('fas', randomIcon, 'rocket');
+            
+            // Posição horizontal aleatória (0 a 100%)
+            rocket.style.left = Math.random() * 100 + 'vw';
+            
+            // Tamanho aleatório (para profundidade)
+            const size = (Math.random() * 1.5 + 1) + 'rem';
+            rocket.style.fontSize = size;
+            
+            // Duração da animação aleatória (velocidade)
+            const duration = (Math.random() * 3 + 4) + 's';
+            rocket.style.animationDuration = duration;
+
+            container.appendChild(rocket);
+
+            // Remove o elemento do DOM após a animação terminar para não pesar a memória
+            setTimeout(() => {
+                rocket.remove();
+            }, parseFloat(duration) * 1000);
+        }
+
+        // Cria um foguete a cada 600ms
+        setInterval(createRocket, 600);
+    </script>
+
+</body>
+</html>
