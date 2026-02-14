@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 01: Setup Profissional e Saída de Dados</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        code, pre { font-family: 'Fira Code', monospace; }
+        .gradient-bg { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); }
+        .code-window { background: #1a1b26; border-radius: 12px; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); }
+        .terminal-header { background: #24283b; padding: 12px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #2f334d; }
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .python-keyword { color: #bb9af7; }
+        .python-string { color: #9ece6a; }
+        .python-comment { color: #565f89; font-style: italic; }
+        .python-function { color: #7aa2f7; }
+        .python-number { color: #ff9e64; }
+        .python-arg { color: #e0af68; }
+        .step-card { transition: all 0.3s; }
+        .step-card:hover { border-color: #3b82f6; background-color: #f8fafc; }
+        
+        /* Bloqueio de seleção para o código exemplo */
+        .no-select {
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            cursor: default;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased">
+
+    <!-- Header -->
+    <header class="gradient-bg text-white py-16 px-6 shadow-2xl">
+        <div class="max-w-5xl mx-auto">
+            <div class="flex flex-col md:flex-row items-center gap-3 mb-6">
+                <span class="bg-blue-600 text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-[0.2em] shadow-lg">Módulo 1</span>
+                <span class="text-slate-400 font-medium">Desenvolvimento de Sistemas - 2026</span>
+            </div>
+            <h1 class="text-5xl font-extrabold mb-4 tracking-tight">Aula 01: Setup e Saída de Dados</h1>
+            <p class="text-xl text-slate-300 max-w-2xl leading-relaxed">Aprenda a configurar o seu ambiente de trabalho e a dominar a primeira forma de comunicação entre o software e o utilizador.</p>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-6 py-12 space-y-20">
+        
+        <!-- Section 1: How-to Setup -->
+        <section id="setup" class="space-y-10">
+            <div class="flex items-center gap-4">
+                <div class="p-4 bg-blue-600 text-white rounded-2xl shadow-lg shadow-blue-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                </div>
+                <div>
+                    <h2 class="text-3xl font-bold text-slate-900">1. Instruções: Como Preparar o Ambiente</h2>
+                    <p class="text-slate-500">Siga estes passos para configurar o VS Code profissionalmente.</p>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 gap-4">
+                <div class="step-card bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-start gap-6">
+                    <span class="bg-slate-100 text-slate-800 w-10 h-10 flex items-center justify-center rounded-full font-black flex-shrink-0">01</span>
+                    <div>
+                        <h3 class="font-bold text-lg text-slate-900">Instalar Extensões</h3>
+                        <p class="text-sm text-slate-600 mt-1">Abra o VS Code, pressione <code>Ctrl+Shift+X</code> e procure por <strong class="text-blue-600">Python</strong> (da Microsoft) e <strong class="text-blue-600">Pylance</strong>. Clique em "Install". Estas extensões dão inteligência ao editor.</p>
+                    </div>
+                </div>
+
+                <div class="step-card bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-start gap-6">
+                    <span class="bg-slate-100 text-slate-800 w-10 h-10 flex items-center justify-center rounded-full font-black flex-shrink-0">02</span>
+                    <div>
+                        <h3 class="font-bold text-lg text-slate-900">Ativar o Code Runner</h3>
+                        <p class="text-sm text-slate-600 mt-1">Instale a extensão <strong class="text-emerald-600">Code Runner</strong>. Ela adicionará um ícone de "Play" no canto superior direito do seu ecrã, permitindo executar o código com apenas um clique.</p>
+                    </div>
+                </div>
+
+                <div class="step-card bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-start gap-6">
+                    <span class="bg-slate-100 text-slate-800 w-10 h-10 flex items-center justify-center rounded-full font-black flex-shrink-0">03</span>
+                    <div>
+                        <h3 class="font-bold text-lg text-slate-900">Configurar Terminal Integrado</h3>
+                        <p class="text-sm text-slate-600 mt-1">Para garantir que o código funcione no terminal interativo: Vá a <code>File > Preferences > Settings</code>, procure por "Code-runner: Run In Terminal" e marque a caixa de seleção.</p>
+                    </div>
+                </div>
+
+                <div class="step-card bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-start gap-6">
+                    <span class="bg-slate-100 text-slate-800 w-10 h-10 flex items-center justify-center rounded-full font-black flex-shrink-0">04</span>
+                    <div>
+                        <h3 class="font-bold text-lg text-slate-900">Criar o Primeiro Ficheiro</h3>
+                        <p class="text-sm text-slate-600 mt-1">Clique em <code>File > New File</code> e guarde-o com o nome <code>aula01.py</code>. O sufixo <strong class="text-slate-900">.py</strong> é obrigatório para que o sistema reconheça como um script Python.</p>
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+
+        <!-- Section 2: Definitions -->
+        <section id="definitions" class="space-y-8">
+            <div class="flex items-center gap-4">
+                <div class="p-4 bg-purple-600 text-white rounded-2xl shadow-lg shadow-purple-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                </div>
+                <div>
+                    <h2 class="text-3xl font-bold text-slate-900">2. Fundamentos do Sistema</h2>
+                    <p class="text-slate-500">Conceitos essenciais para compreender a arquitetura do Python.</p>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card 1 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-purple-300 transition-all">
+                    <div class="text-purple-600 mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2"/><path d="M3 17v2a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-2"/><path d="M12 12V3"/><path d="M12 21v-9"/><path d="M8 12h8"/></svg>
+                    </div>
+                    <h4 class="font-bold text-slate-900 mb-2">Python Interpretado</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed">Ao contrário de linguagens compiladas, o Python executa o código linha a linha. Isto torna o desenvolvimento desktop mais rápido e flexível.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-purple-300 transition-all">
+                    <div class="text-purple-600 mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v8"/><path d="m4.93 10.93 1.41 1.41"/><path d="M2 18h2"/><path d="M20 18h2"/><path d="m19.07 10.93-1.41 1.41"/><path d="M22 22H2"/><path d="m8 22 4-10 4 10"/></svg>
+                    </div>
+                    <h4 class="font-bold text-slate-900 mb-2">O Interpretador</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed">É o motor que traduz o teu ficheiro <code class="bg-slate-100 px-1 rounded">.py</code> em linguagem que o processador entende. Sem ele, o código é apenas texto.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-purple-300 transition-all">
+                    <div class="text-purple-600 mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v20"/><path d="M14 2v20"/><path d="M6 10h12"/><path d="M6 14h12"/></svg>
+                    </div>
+                    <h4 class="font-bold text-slate-900 mb-2">Sintaxe e Indentação</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed">No Python, o espaço vazio (indentação) é obrigatório. Ele define onde começa e termina cada bloco de lógica do teu software.</p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-purple-300 transition-all">
+                    <div class="text-purple-600 mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="14" x="3" y="3" rx="2"/><line x1="3" y1="7" x2="21" y2="7"/><line x1="7" y1="13" x2="17" y2="13"/></svg>
+                    </div>
+                    <h4 class="font-bold text-slate-900 mb-2">Console (Output)</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed">A função <code class="bg-slate-100 px-1 rounded">print()</code> é a tua ponte. É através dela que o programa envia feedback visual para o utilizador.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Naruto Practice (Locked) -->
+        <section id="practice" class="space-y-8">
+            <div class="flex items-center gap-4">
+                <div class="p-4 bg-orange-600 text-white rounded-2xl shadow-lg shadow-orange-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                </div>
+                <div>
+                    <h2 class="text-3xl font-bold text-slate-900">3. Prática: O Painel do Shinobi</h2>
+                    <p class="text-slate-500 italic">Bloco bloqueado: Digite manualmente no seu VS Code para praticar a sintaxe ninja!</p>
+                </div>
+            </div>
+            
+            <div class="code-window no-select" id="code-block" oncopy="return false" oncontextmenu="return false" onmousedown="return false">
+                <div class="terminal-header">
+                    <div class="dot bg-[#ff5f56]"></div>
+                    <div class="dot bg-[#ffbd2e]"></div>
+                    <div class="dot bg-[#27c93f]"></div>
+                    <span class="text-slate-400 text-xs ml-4 font-mono">REDE_KONOHA.PY</span>
+                </div>
+                <div class="p-8 text-sm md:text-base leading-relaxed overflow-x-auto text-[#a9b1d6]">
+<pre><code><span class="python-comment"># --- CABEÇALHO DA ALDEIA DA FOLHA ---</span>
+<span class="python-comment"># O sinal '*' cria uma moldura inspirada em pergaminhos ninja</span>
+<span class="python-function">print</span>(<span class="python-string">"@"</span> * <span class="python-number">50</span>)
+<span class="python-function">print</span>(<span class="python-string">"REDE DE INTELIGÊNCIA SHINOBI // KONOHAGAKURE"</span>)
+<span class="python-function">print</span>(<span class="python-string">"SISTEMA DE MONITORIZAÇÃO DE CHAKRA v7.0"</span>)
+<span class="python-function">print</span>(<span class="python-string">"@"</span> * <span class="python-number">50</span>)
+
+<span class="python-comment"># --- LOGS DE ACESSO (Simulação de ativação de Jutsu) ---</span>
+<span class="python-function">print</span>(<span class="python-string">"\nA sincronizar Chakra com o Pergaminho..."</span>, <span class="python-arg">end</span>=<span class="python-string">" "</span>)
+<span class="python-function">print</span>(<span class="python-string">"[100%]"</span>)
+
+<span class="python-function">print</span>(<span class="python-string">"A verificar selos de proteção da barreira..."</span>, <span class="python-arg">end</span>=<span class="python-string">" "</span>)
+<span class="python-function">print</span>(<span class="python-string">"[ATIVO]"</span>)
+
+<span class="python-comment"># --- TABELA DE NINJAS (Uso de 'sep' para dados de equipa) ---</span>
+<span class="python-function">print</span>(<span class="python-string">"\n"</span> + <span class="python-string">"-"</span> * <span class="python-number">15</span> + <span class="python-string">" EQUIPA 7 ATUAL "</span> + <span class="python-string">"-"</span> * <span class="python-number">15</span>)
+<span class="python-function">print</span>(<span class="python-string">"Ninja"</span>, <span class="python-string">"Rank"</span>, <span class="python-string">"Especialidade"</span>, <span class="python-arg">sep</span>=<span class="python-string">" | "</span>)
+<span class="python-function">print</span>(<span class="python-string">"Naruto"</span>, <span class="python-string">"Hokage"</span>, <span class="python-string">"Rasengan"</span>, <span class="python-arg">sep</span>=<span class="python-string">" | "</span>)
+<span class="python-function">print</span>(<span class="python-string">"Sasuke"</span>, <span class="python-string">"Suporte"</span>, <span class="python-string">"Chidori"</span>, <span class="python-arg">sep</span>=<span class="python-string">" | "</span>)
+
+<span class="python-comment"># --- FORMATAÇÃO COM ESCAPE (\n e \t) ---</span>
+<span class="python-function">print</span>(<span class="python-string">"\nMISSÕES DISPONÍVEIS NO QUADRO:"</span>)
+<span class="python-function">print</span>(<span class="python-string">"\t* Rank S: Detetar rasto da Akatsuki"</span>)
+<span class="python-function">print</span>(<span class="python-string">"\t* Rank B: Escolta para a Aldeia da Areia"</span>)
+
+<span class="python-comment"># --- OPERAÇÕES MATEMÁTICAS DIRETAS NO PRINT ---</span>
+<span class="python-function">print</span>(<span class="python-string">"\nEstatísticas da Batalha Anterior:"</span>)
+<span class="python-function">print</span>(<span class="python-string">"Total de Chakra consumido (unidades):"</span>, <span class="python-number">5000</span> + <span class="python-number">2350</span>)
+<span class="python-function">print</span>(<span class="python-string">"Média de Kunais por Shinobi:"</span>, <span class="python-number">60</span> / <span class="python-number">3</span>)
+
+<span class="python-comment"># --- MENSAGEM FINAL ---</span>
+<span class="python-function">print</span>(<span class="python-string">"\n"</span> + <span class="python-string">"@"</span> * <span class="python-number">50</span>)
+<span class="python-function">print</span>(<span class="python-string">"KONOHA ESTÁ SEGURA. SISTEMA EM REPOUSO."</span>)
+<span class="python-function">print</span>(<span class="python-string">"@"</span> * <span class="python-number">50</span>)</code></pre>
+                </div>
+            </div>
+            <p class="text-[10px] text-slate-400 text-center uppercase tracking-widest font-bold">A proteção de cópia está ativa neste módulo.</p>
+        </section>
+
+        <!-- Section 4: Activities -->
+        <section id="exercises" class="space-y-12">
+            <div class="flex items-center gap-4">
+                <div class="p-4 bg-amber-500 text-white rounded-2xl shadow-lg shadow-amber-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                </div>
+                <div>
+                    <h2 class="text-3xl font-bold text-slate-900">4. Atividade Prática</h2>
+                    <p class="text-slate-500">Resolva os exercícios para consolidar o conhecimento.</p>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Fáceis -->
+                <div class="space-y-4">
+                    <h3 class="text-emerald-600 font-black text-xs uppercase tracking-widest bg-emerald-50 px-3 py-1 rounded-full w-fit">Nível: Fácil</h3>
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                        <p class="text-sm text-slate-700"><strong>01.</strong> Crie um script que exiba o seu nome e a sua cidade em linhas separadas.</p>
+                        <p class="text-sm text-slate-700 border-t pt-3"><strong>02.</strong> Imprima a frase "Python*é*Incrível" usando obrigatoriamente o argumento <code>sep</code>.</p>
+                        <p class="text-sm text-slate-700 border-t pt-3"><strong>03.</strong> Exiba o resultado da soma de 1500 + 3500 sem usar aspas no cálculo.</p>
+                    </div>
+                </div>
+
+                <!-- Médios -->
+                <div class="space-y-4">
+                    <h3 class="text-blue-600 font-black text-xs uppercase tracking-widest bg-blue-50 px-3 py-1 rounded-full w-fit">Nível: Médio</h3>
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                        <p class="text-sm text-slate-700"><strong>04. Etiqueta de Produto:</strong> Use <code>\n</code> e <code>\t</code> para criar uma etiqueta com "PRODUTO", "CÓDIGO" e "VALOR" perfeitamente alinhados.</p>
+                        <p class="text-sm text-slate-700 border-t pt-3"><strong>05. Loading Bar:</strong> Simule o carregamento de uma barra usando <code>"#" * 10</code> e a palavra "FIM" na mesma linha usando <code>end</code>.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Desafio -->
+            <div class="space-y-4">
+                <h3 class="text-rose-600 font-black text-xs uppercase tracking-widest bg-rose-50 px-3 py-1 rounded-full w-fit">Nível: Desafio</h3>
+                <div class="bg-slate-900 p-8 rounded-3xl border border-slate-700 shadow-2xl">
+                    <p class="text-white font-bold text-xl mb-4">06. Simulador de Cupom Fiscal</p>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Crie um script que gere um cupom de venda. Deve conter:
+                        <ul class="list-disc list-inside mt-3 text-xs text-slate-500 space-y-1">
+                            <li>Divisórias horizontais usando <code>"-" * 35</code>.</li>
+                            <li>Três itens (Ex: Mouse, Teclado, Monitor).</li>
+                            <li>Preços alinhados à direita usando o caractere <code>\t</code>.</li>
+                            <li>Uma linha de "TOTAL" onde o valor é calculado automaticamente pela soma dos itens dentro do próprio print.</li>
+                        </ul>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="gradient-bg text-slate-400 py-12 px-6 text-center mt-20">
+        <p class="text-sm">Desenvolvimento de Sistemas - Curso Python 2026</p>
+    </footer>
+
+    <script>
+        // Bloqueio extra via JavaScript para prevenir atalhos de teclado e clique direito no bloco de código
+        const codeBlock = document.getElementById('code-block');
+        
+        codeBlock.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && (e.key === 'c' || e.key === 'v' || e.key === 'a' || e.key === 'u')) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        // Impede o arraste do texto
+        codeBlock.addEventListener('dragstart', (e) => e.preventDefault());
+    </script>
+
+</body>
+</html>
