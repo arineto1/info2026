@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 02: Variáveis e Tipos de Dados</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        code, pre { font-family: 'Fira Code', monospace; }
+        /* Tema Marvel: Vermelho e Ouro sobre fundo escuro */
+        .gradient-bg { background: linear-gradient(135deg, #7f1d1d 0%, #1a1010 100%); }
+        .code-window { background: #1a1b26; border-radius: 12px; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); border: 1px solid #451a1a; }
+        .terminal-header { background: #2f1010; padding: 12px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #451a1a; }
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        
+        /* Syntax Highlighting Customizado */
+        .python-keyword { color: #f59e0b; font-weight: bold; } /* Gold */
+        .python-string { color: #ef4444; } /* Red */
+        .python-comment { color: #6b7280; font-style: italic; }
+        .python-function { color: #60a5fa; }
+        .python-number { color: #fcd34d; }
+        .python-type { color: #c084fc; }
+        
+        .step-card { transition: all 0.3s; border-left: 4px solid transparent; }
+        .step-card:hover { border-left-color: #ef4444; background-color: #fef2f2; transform: translateX(5px); }
+        
+        /* Bloqueio de seleção */
+        .no-select {
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            cursor: default;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased">
+
+    <!-- Header -->
+    <header class="gradient-bg text-white py-16 px-6 shadow-2xl relative overflow-hidden">
+        <!-- Elemento decorativo de fundo -->
+        <div class="absolute top-0 right-0 opacity-10 transform translate-x-10 -translate-y-10">
+            <svg width="300" height="300" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 22h20L12 2zm0 3.8l6.8 13.2H5.2L12 5.8z"/></svg>
+        </div>
+
+        <div class="max-w-5xl mx-auto relative z-10">
+            <div class="flex flex-col md:flex-row items-center gap-3 mb-6">
+                <span class="bg-red-600 text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-[0.2em] shadow-lg border border-red-400">Módulo 1</span>
+                <span class="text-red-200 font-medium">Iniciativa Vingadores - Python 2026</span>
+            </div>
+            <h1 class="text-5xl font-extrabold mb-4 tracking-tight">Aula 02: Variáveis e Tipos</h1>
+            <p class="text-xl text-red-100 max-w-2xl leading-relaxed">Aprenda a armazenar informações na memória do J.A.R.V.I.S. e manipular os dados essenciais para a missão.</p>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-6 py-12 space-y-20">
+        
+        <!-- Section 1: Intro & Definitions -->
+        <section id="definitions" class="space-y-8">
+            <div class="flex items-center gap-4">
+                <div class="p-4 bg-red-700 text-white rounded-2xl shadow-lg shadow-red-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                </div>
+                <div>
+                    <h2 class="text-3xl font-bold text-slate-900">1. O Arquivo de Dados</h2>
+                    <p class="text-slate-500">Como o computador guarda a identidade e os poderes.</p>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-red-100 w-16 h-16 rounded-bl-full -mr-8 -mt-8"></div>
+                    <h3 class="font-bold text-red-700 mb-3 text-lg">O que é uma Variável?</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">Pense numa variável como uma <b>caixa etiquetada</b> nas Indústrias Stark. Você cria a etiqueta (nome) e guarda algo dentro (valor). Sempre que precisar desse valor, chama pelo nome da etiqueta.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-yellow-100 w-16 h-16 rounded-bl-full -mr-8 -mt-8"></div>
+                    <h3 class="font-bold text-yellow-600 mb-3 text-lg">Tipagem Dinâmica</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">No Python, o sistema adapta-se automaticamente. Se guardar texto, a caixa vira tipo Texto. Se guardar números, vira tipo Número. Não precisa declarar antes.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="p-4 bg-slate-100 rounded-xl text-center border-t-4 border-blue-500 shadow-sm">
+                    <code class="text-blue-600 font-bold text-lg">str</code>
+                    <p class="text-[10px] uppercase text-slate-500 mt-1 font-bold">String (Texto)</p>
+                    <p class="text-xs text-slate-400 mt-1">"Iron Man"</p>
+                </div>
+                <div class="p-4 bg-slate-100 rounded-xl text-center border-t-4 border-green-500 shadow-sm">
+                    <code class="text-green-600 font-bold text-lg">int</code>
+                    <p class="text-[10px] uppercase text-slate-500 mt-1 font-bold">Inteiro</p>
+                    <p class="text-xs text-slate-400 mt-1">3000</p>
+                </div>
+                <div class="p-4 bg-slate-100 rounded-xl text-center border-t-4 border-yellow-500 shadow-sm">
+                    <code class="text-yellow-600 font-bold text-lg">float</code>
+                    <p class="text-[10px] uppercase text-slate-500 mt-1 font-bold">Flutuante (Decimal)</p>
+                    <p class="text-xs text-slate-400 mt-1">98.5</p>
+                </div>
+                <div class="p-4 bg-slate-100 rounded-xl text-center border-t-4 border-purple-500 shadow-sm">
+                    <code class="text-purple-600 font-bold text-lg">bool</code>
+                    <p class="text-[10px] uppercase text-slate-500 mt-1 font-bold">Booleano</p>
+                    <p class="text-xs text-slate-400 mt-1">True / False</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Code Practice (Locked) -->
+        <section id="practice" class="space-y-8">
+            <div class="flex items-center gap-4">
+                <div class="p-4 bg-yellow-500 text-white rounded-2xl shadow-lg shadow-yellow-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+                </div>
+                <div>
+                    <h2 class="text-3xl font-bold text-slate-900">2. Prática: Protocolo J.A.R.V.I.S.</h2>
+                    <p class="text-slate-500 italic">Digite este código para inicializar os sistemas da armadura Mark 85.</p>
+                </div>
+            </div>
+            
+            <div class="code-window no-select" id="code-block" oncopy="return false" oncontextmenu="return false" onmousedown="return false">
+                <div class="terminal-header">
+                    <div class="dot bg-[#ff5f56]"></div>
+                    <div class="dot bg-[#ffbd2e]"></div>
+                    <div class="dot bg-[#27c93f]"></div>
+                    <span class="text-slate-400 text-xs ml-4 font-mono">MARK_85_SYSTEM.PY</span>
+                </div>
+                <div class="p-8 text-sm md:text-base leading-relaxed overflow-x-auto text-[#a9b1d6]">
+<pre><code><span class="python-comment"># --- DEFINIÇÃO DE VARIÁVEIS (MEMÓRIA PRINCIPAL) ---</span>
+<span class="python-comment"># Strings (str): Textos devem estar sempre entre aspas</span>
+<span class="python-keyword">nome_piloto</span> = <span class="python-string">"Tony Stark"</span>
+<span class="python-keyword">codinome</span> = <span class="python-string">"Iron Man"</span>
+<span class="python-keyword">filiacao</span> = <span class="python-string">"Vingadores"</span>
+
+<span class="python-comment"># Inteiros (int): Números para contagem e versões</span>
+<span class="python-keyword">versao_armadura</span> = <span class="python-number">85</span>
+<span class="python-keyword">municao_repulsor</span> = <span class="python-number">500</span>
+
+<span class="python-comment"># Floats (float): Números decimais para precisão de energia</span>
+<span class="python-keyword">nivel_bateria</span> = <span class="python-number">98.5</span>
+<span class="python-keyword">consumo_por_minuto</span> = <span class="python-number">2.5</span>
+
+<span class="python-comment"># Booleanos (bool): Interruptores lógicos (True/False)</span>
+<span class="python-keyword">sistemas_online</span> = <span class="python-keyword">True</span>
+<span class="python-keyword">ameaca_detectada</span> = <span class="python-keyword">False</span>
+
+<span class="python-comment"># --- INTERFACE DE COMANDO (HUD) ---</span>
+<span class="python-function">print</span>(<span class="python-string">"--- INICIANDO J.A.R.V.I.S ---"</span>)
+<span class="python-function">print</span>(<span class="python-string">"Bem-vindo,"</span>, <span class="python-keyword">nome_piloto</span>)
+<span class="python-function">print</span>(<span class="python-string">"Armadura Ativa: Mark"</span>, <span class="python-keyword">versao_armadura</span>)
+
+<span class="python-comment"># Diagnóstico de Tipos: Verificando como o Python guardou os dados</span>
+<span class="python-function">print</span>(<span class="python-string">"\n[DIAGNÓSTICO DE MEMÓRIA]"</span>)
+<span class="python-function">print</span>(<span class="python-string">"Variável 'bateria' é do tipo:"</span>, <span class="python-function">type</span>(<span class="python-keyword">nivel_bateria</span>))
+<span class="python-function">print</span>(<span class="python-string">"Variável 'online' é do tipo:"</span>, <span class="python-function">type</span>(<span class="python-keyword">sistemas_online</span>))
+
+<span class="python-comment"># --- CÁLCULOS DE MISSÃO ---</span>
+<span class="python-comment"># Usando variáveis para criar novas informações</span>
+<span class="python-keyword">tempo_voo_restante</span> = <span class="python-keyword">nivel_bateria</span> / <span class="python-keyword">consumo_por_minuto</span>
+
+<span class="python-function">print</span>(<span class="python-string">"\n[ESTIMATIVA TÁTICA]"</span>)
+<span class="python-function">print</span>(<span class="python-string">"Tempo de voo disponível:"</span>, <span class="python-keyword">tempo_voo_restante</span>, <span class="python-string">"minutos"</span>)
+
+<span class="python-comment"># --- SIMULAÇÃO DE COMBATE ---</span>
+<span class="python-function">print</span>(<span class="python-string">"\n>>> ALERTA: DISPARANDO UNI-BEAM <<<"</span>)
+<span class="python-comment"># Atualizando o valor de uma variável existente</span>
+<span class="python-keyword">nivel_bateria</span> = <span class="python-keyword">nivel_bateria</span> - <span class="python-number">15.5</span>
+<span class="python-keyword">municao_repulsor</span> = <span class="python-keyword">municao_repulsor</span> - <span class="python-number">50</span>
+
+<span class="python-function">print</span>(<span class="python-string">"Status Pós-Combate:"</span>)
+<span class="python-function">print</span>(<span class="python-string">"Bateria:"</span>, <span class="python-keyword">nivel_bateria</span>, <span class="python-string">"%"</span>)
+<span class="python-function">print</span>(<span class="python-string">"Munição:"</span>, <span class="python-keyword">municao_repulsor</span>, <span class="python-string">"unidades"</span>)</code></pre>
+                </div>
+            </div>
+            <p class="text-[10px] text-red-400 text-center uppercase tracking-widest font-bold bg-red-50 py-2 rounded">⚠️ Protocolo de segurança ativo: Cópia de código desativada</p>
+        </section>
+
+        <!-- Section 3: Activities -->
+        <section id="exercises" class="space-y-12">
+            <div class="flex items-center gap-4">
+                <div class="p-4 bg-slate-800 text-white rounded-2xl shadow-lg shadow-slate-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <div>
+                    <h2 class="text-3xl font-bold text-slate-900">3. Missões de Campo</h2>
+                    <p class="text-slate-500">Recruta, complete as tarefas para subir de nível na S.H.I.E.L.D.</p>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Fáceis -->
+                <div class="space-y-4">
+                    <h3 class="text-green-600 font-black text-xs uppercase tracking-widest bg-green-50 px-3 py-1 rounded-full w-fit">Nível 1: Recruta</h3>
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4 hover:border-green-300 transition-colors">
+                        <div class="group">
+                            <span class="text-xs font-bold text-slate-400">MISSÃO 01: CADASTRO INICIAL</span>
+                            <p class="text-sm text-slate-700 mt-1">Crie uma variável chamada <code>vingador</code> com o nome do seu herói e imprima no formato: <code>"Agente Selecionado: [nome]"</code>.</p>
+                        </div>
+                        <div class="group border-t pt-3">
+                            <span class="text-xs font-bold text-slate-400">MISSÃO 02: ARQUIVOS ANTIGOS</span>
+                            <p class="text-sm text-slate-700 mt-1">Defina uma variável <code>ano_fundacao</code> com o valor 2012 (int) referente à Batalha de Nova York. Use <code>type()</code> para provar ao sistema que é um número inteiro.</p>
+                        </div>
+                        <div class="group border-t pt-3">
+                            <span class="text-xs font-bold text-slate-400">MISSÃO 03: VERIFICAÇÃO DE ESPÉCIE</span>
+                            <p class="text-sm text-slate-700 mt-1">Crie uma variável booleana <code>eh_humano</code>. Se o seu herói for Thor ou Visão, o valor deve ser <code>False</code>. Se for Viúva Negra, <code>True</code>. Imprima o resultado.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Médios -->
+                <div class="space-y-4">
+                    <h3 class="text-blue-600 font-black text-xs uppercase tracking-widest bg-blue-50 px-3 py-1 rounded-full w-fit">Nível 2: Agente</h3>
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4 hover:border-blue-300 transition-colors">
+                        <div class="group">
+                            <span class="text-xs font-bold text-slate-400">MISSÃO 04: A MANOPLA DO INFINITO</span>
+                            <p class="text-sm text-slate-700 mt-1">Thanos começou com 0 joias. Crie a variável <code>joias</code> = 0.
+                            <br>1. Ele pegou a Joia do Poder: Some +1 e imprima.
+                            <br>2. Pegou a Joia do Espaço: Some +1 e imprima.
+                            <br>3. Mostre o total final.</p>
+                        </div>
+                        <div class="group border-t pt-3">
+                            <span class="text-xs font-bold text-slate-400">MISSÃO 05: IDENTIDADE SECRETA</span>
+                            <p class="text-sm text-slate-700 mt-1">O Homem-Aranha precisa de um novo passaporte.
+                            <br>Crie <code>primeiro_nome</code> ("Peter") e <code>sobrenome</code> ("Parker").
+                            <br>Crie uma terceira variável <code>nome_completo</code> somando as duas com um espaço no meio e exiba.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Desafio -->
+            <div class="space-y-4">
+                <h3 class="text-red-600 font-black text-xs uppercase tracking-widest bg-red-50 px-3 py-1 rounded-full w-fit">Nível 3: Vingador</h3>
+                <div class="bg-slate-900 p-8 rounded-3xl border border-red-900 shadow-2xl relative overflow-hidden">
+                    <div class="relative z-10">
+                        <h4 class="text-white font-bold text-xl mb-4 flex items-center gap-2">
+                            <span class="text-red-500">★</span> 
+                            Ficha Criminal da HYDRA
+                        </h4>
+                        <p class="text-sm text-slate-400 leading-relaxed mb-6">
+                            Você interceptou dados inimigos. Crie um script que gere uma ficha formatada contendo variáveis para:
+                            <br><br>
+                            <ul class="list-disc list-inside text-xs text-slate-500 space-y-1 mb-4">
+                                <li><strong>Nome do Vilão</strong> (str)</li>
+                                <li><strong>Nível de Perigo</strong> (int de 0 a 100)</li>
+                                <li><strong>Recompensa</strong> (float)</li>
+                                <li><strong>Está preso?</strong> (bool)</li>
+                            </ul>
+                            Use <code>print()</code> com <code>\n</code> e <code>\t</code> para formatar a ficha como um documento oficial, exibindo os valores das variáveis organizados.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-[#1a1010] text-slate-400 py-12 px-6 text-center mt-20 border-t border-red-900">
+        <p class="text-sm">Desenvolvimento de Sistemas - Curso Python 2026</p>
+        <p class="text-xs text-red-500 mt-2">"Eu sou inevitável."</p>
+    </footer>
+
+    <script>
+        // Sistema de bloqueio de cópia e atalhos
+        const codeBlock = document.getElementById('code-block');
+        
+        codeBlock.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && (e.key === 'c' || e.key === 'v' || e.key === 'a' || e.key === 'u' || e.key === 's')) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        // Impede o menu de contexto (botão direito)
+        codeBlock.addEventListener('contextmenu', (e) => e.preventDefault());
+
+        // Impede o arrastar de texto
+        codeBlock.addEventListener('dragstart', (e) => e.preventDefault());
+    </script>
+
+</body>
+</html>

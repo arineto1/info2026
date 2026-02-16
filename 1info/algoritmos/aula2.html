@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 02 - Variáveis, Tipos e Entrada de Dados</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .code-font { font-family: 'Fira Code', monospace; }
+        .visualg-keyword { color: #3b82f6; font-weight: bold; }
+        .visualg-string { color: #10b981; }
+        .visualg-comment { color: #94a3b8; font-style: italic; }
+        .visualg-command { color: #f59e0b; }
+        .visualg-type { color: #ec4899; font-weight: bold; }
+        
+        pre {
+            background-color: #1e293b;
+            color: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            overflow-x: auto;
+            border: 1px solid #334155;
+        }
+
+        .exercise-card:hover {
+            transform: translateY(-2px);
+            transition: all 0.2s ease;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 line-tight">
+
+    <!-- Header / Navbar -->
+    <nav class="bg-blue-800 text-white p-4 sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold tracking-tight">Programação & Algoritmos <span class="text-blue-200">2026</span></h1>
+            <div class="hidden md:flex space-x-6 text-sm font-medium">
+                <a href="#teoria" class="hover:text-blue-200 transition">Teoria</a>
+                <a href="#pratica" class="hover:text-blue-200 transition">Prática</a>
+                <a href="#exercicios" class="hover:text-blue-200 transition">Exercícios</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="bg-blue-700 text-white py-16 px-4 text-center">
+        <div class="container mx-auto max-w-4xl">
+            <span class="bg-blue-500 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">Módulo 1: Visualg</span>
+            <h2 class="text-4xl md:text-5xl font-extrabold mt-4 mb-6">Aula 02: Variáveis e Tipos de Dados</h2>
+            <p class="text-lg text-blue-100 max-w-2xl mx-auto">Aprenda a criar "caixas" na memória do computador para guardar informações e permitir que o usuário digite dados no seu programa.</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto max-w-5xl px-4 py-12">
+        
+        <!-- Teoria Section -->
+        <section id="teoria" class="mb-20">
+            <div class="flex items-center mb-8">
+                <div class="w-10 h-10 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mr-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                    </svg>
+                </div>
+                <h3 class="text-3xl font-bold">1. Memória e Variáveis</h3>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                    <h4 class="font-bold text-blue-600 mb-2">Inteiro</h4>
+                    <p class="text-slate-600 text-sm">Números sem casas decimais. Ex: 10, -5, 1000.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                    <h4 class="font-bold text-blue-600 mb-2">Real</h4>
+                    <p class="text-slate-600 text-sm">Números com casas decimais (ponto flutuante). Ex: 1.75, 50.5.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                    <h4 class="font-bold text-blue-600 mb-2">Caractere</h4>
+                    <p class="text-slate-600 text-sm">Textos, nomes ou símbolos entre aspas. Ex: "João", "A1".</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                    <h4 class="font-bold text-blue-600 mb-2">Logico</h4>
+                    <p class="text-slate-600 text-sm">Valores booleanos: Verdadeiro ou Falso.</p>
+                </div>
+            </div>
+
+            <div class="mt-8 bg-amber-50 border-l-4 border-amber-400 p-4">
+                <p class="text-sm text-amber-800"><strong>Dica de Ouro:</strong> Variáveis são como etiquetas em caixas. Você dá um nome (identificador) e diz o que pode ter dentro (tipo).</p>
+            </div>
+        </section>
+
+        <!-- Prática Section -->
+        <section id="pratica" class="mb-20">
+            <div class="flex items-center mb-8">
+                <div class="w-10 h-10 bg-emerald-100 text-emerald-600 rounded-lg flex items-center justify-center mr-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                    </svg>
+                </div>
+                <h3 class="text-3xl font-bold">2. Prática Expandida</h3>
+            </div>
+
+            <div class="space-y-12">
+                <!-- Exemplo 1 -->
+                <div>
+                    <h4 class="text-xl font-semibold mb-4 flex items-center">
+                        <span class="bg-emerald-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs mr-3">A</span>
+                        Declaração e Atribuição (Dar Valor)
+                    </h4>
+                    <pre class="code-font text-sm leading-relaxed">
+<span class="visualg-keyword">algoritmo</span> <span class="visualg-string">"Exemplo_Atribuicao"</span>
+<span class="visualg-keyword">var</span>
+   nome : <span class="visualg-type">caractere</span>
+   idade : <span class="visualg-type">inteiro</span>
+<span class="visualg-keyword">inicio</span>
+   <span class="visualg-comment">// Usamos o símbolo <- para dizer que a variável RECEBE um valor</span>
+   nome <- <span class="visualg-string">"Carlos Alberto"</span>
+   idade <- <span class="visualg-command">25</span>
+   
+   <span class="visualg-command">escreval</span>(<span class="visualg-string">"O nome do usuário é: "</span>, nome)
+   <span class="visualg-command">escreval</span>(<span class="visualg-string">"A idade dele é: "</span>, idade, <span class="visualg-string">" anos."</span>)
+<span class="visualg-keyword">fimalgoritmo</span></pre>
+                </div>
+
+                <!-- Exemplo 2 -->
+                <div>
+                    <h4 class="text-xl font-semibold mb-4 flex items-center">
+                        <span class="bg-emerald-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs mr-3">B</span>
+                        Interação com Usuário (Leia)
+                    </h4>
+                    <pre class="code-font text-sm leading-relaxed">
+<span class="visualg-keyword">algoritmo</span> <span class="visualg-string">"Entrada_Dados"</span>
+<span class="visualg-keyword">var</span>
+   numero1, numero2, soma : <span class="visualg-type">inteiro</span>
+<span class="visualg-keyword">inicio</span>
+   <span class="visualg-command">escreva</span>(<span class="visualg-string">"Digite o primeiro número: "</span>)
+   <span class="visualg-command">leia</span>(numero1) <span class="visualg-comment">// O programa para e espera o usuário digitar</span>
+   
+   <span class="visualg-command">escreva</span>(<span class="visualg-string">"Digite o segundo número: "</span>)
+   <span class="visualg-command">leia</span>(numero2)
+   
+   soma <- numero1 + numero2
+   
+   <span class="visualg-command">escreval</span>(<span class="visualg-string">"A soma dos dois números é: "</span>, soma)
+<span class="visualg-keyword">fimalgoritmo</span></pre>
+                </div>
+
+                <!-- Exemplo 3 -->
+                <div>
+                    <h4 class="text-xl font-semibold mb-4 flex items-center">
+                        <span class="bg-emerald-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs mr-3">C</span>
+                        Trabalhando com Números Decimais (Real)
+                    </h4>
+                    <pre class="code-font text-sm leading-relaxed">
+<span class="visualg-keyword">algoritmo</span> <span class="visualg-string">"Calculo_Media"</span>
+<span class="visualg-keyword">var</span>
+   n1, n2, media : <span class="visualg-type">real</span>
+   aluno : <span class="visualg-type">caractere</span>
+<span class="visualg-keyword">inicio</span>
+   <span class="visualg-command">escreva</span>(<span class="visualg-string">"Nome do Aluno: "</span>)
+   <span class="visualg-command">leia</span>(aluno)
+   
+   <span class="visualg-command">escreva</span>(<span class="visualg-string">"Digite a Nota 1: "</span>)
+   <span class="visualg-command">leia</span>(n1)
+   
+   <span class="visualg-command">escreva</span>(<span class="visualg-string">"Digite a Nota 2: "</span>)
+   <span class="visualg-command">leia</span>(n2)
+   
+   media <- (n1 + n2) / 2
+   
+   <span class="visualg-command">escreval</span>(<span class="visualg-string">"-----------------------------"</span>)
+   <span class="visualg-command">escreval</span>(<span class="visualg-string">"ALUNO: "</span>, aluno)
+   <span class="visualg-command">escreval</span>(<span class="visualg-string">"MÉDIA FINAL: "</span>, media)
+<span class="visualg-keyword">fimalgoritmo</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exercícios Section -->
+        <section id="exercicios" class="mb-20">
+            <div class="flex items-center mb-8">
+                <div class="w-10 h-10 bg-amber-100 text-amber-600 rounded-lg flex items-center justify-center mr-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                    </svg>
+                </div>
+                <h3 class="text-3xl font-bold">3. Exercícios de Fixação</h3>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="exercise-card bg-white p-5 rounded-lg border border-slate-200 shadow-sm flex items-start space-x-4">
+                    <span class="bg-slate-100 text-slate-500 text-xs font-bold px-2 py-1 rounded">01</span>
+                    <p class="text-sm"><strong>Armazenamento de Texto:</strong> Crie um algoritmo que declare uma variável do tipo <code>caractere</code>, atribua seu nome a ela manualmente e depois mostre na tela a mensagem: "Olá, o nome armazenado é: [variável]".</p>
+                </div>
+                <div class="exercise-card bg-white p-5 rounded-lg border border-slate-200 shadow-sm flex items-start space-x-4">
+                    <span class="bg-slate-100 text-slate-500 text-xs font-bold px-2 py-1 rounded">02</span>
+                    <p class="text-sm"><strong>Calculadora de Idade:</strong> Peça para o usuário digitar o <strong>ano atual</strong> e o <strong>ano de nascimento</strong>. Armazene em variáveis inteiras, calcule a idade e exiba o resultado.</p>
+                </div>
+                <div class="exercise-card bg-white p-5 rounded-lg border border-slate-200 shadow-sm flex items-start space-x-4">
+                    <span class="bg-slate-100 text-slate-500 text-xs font-bold px-2 py-1 rounded">03</span>
+                    <p class="text-sm"><strong>Conversor de Medidas:</strong> Peça um valor em <strong>metros</strong> (tipo real) e converta para <strong>centímetros</strong>. Exiba uma mensagem explicativa como: "X metros equivalem a Y centímetros".</p>
+                </div>
+                <div class="exercise-card bg-white p-5 rounded-lg border border-slate-200 shadow-sm flex items-start space-x-4">
+                    <span class="bg-slate-100 text-slate-500 text-xs font-bold px-2 py-1 rounded">04</span>
+                    <p class="text-sm"><strong>Área do Retângulo:</strong> Crie um programa que receba a <code>base</code> e a <code>altura</code> de um retângulo, calcule a área e exiba: "A área do retângulo informada é de: [area]".</p>
+                </div>
+                <div class="exercise-card bg-white p-5 rounded-lg border border-slate-200 shadow-sm flex items-start space-x-4">
+                    <span class="bg-slate-100 text-slate-500 text-xs font-bold px-2 py-1 rounded">05</span>
+                    <p class="text-sm"><strong>Dados do Produto:</strong> Solicite ao usuário o nome de um produto, a quantidade comprada e o preço unitário. Calcule o valor total e exiba um resumo da compra.</p>
+                </div>
+                <div class="exercise-card bg-white p-5 rounded-lg border border-slate-200 shadow-sm flex items-start space-x-4">
+                    <span class="bg-slate-100 text-slate-500 text-xs font-bold px-2 py-1 rounded">06</span>
+                    <p class="text-sm"><strong>Média de Combustível:</strong> Peça a distância percorrida por um carro e o total de litros de combustível gasto. Calcule o consumo médio (km/l) e exiba com uma mensagem adequada.</p>
+                </div>
+                <div class="exercise-card bg-white p-5 rounded-lg border border-slate-200 shadow-sm flex items-start space-x-4">
+                    <span class="bg-slate-100 text-slate-500 text-xs font-bold px-2 py-1 rounded">07</span>
+                    <p class="text-sm"><strong>Sucessor e Antecessor:</strong> Leia um número inteiro e exiba na tela quem é o seu antecessor e quem é o seu sucessor usando variáveis auxiliares.</p>
+                </div>
+                <div class="exercise-card bg-white p-5 rounded-lg border border-slate-200 shadow-sm flex items-start space-x-4">
+                    <span class="bg-slate-100 text-slate-500 text-xs font-bold px-2 py-1 rounded">08</span>
+                    <p class="text-sm"><strong>Troca de Valores:</strong> Leia dois valores em variáveis A e B. Faça com que a variável A passe a ter o valor de B, e B tenha o valor de A. <em>Dica: você precisará de uma terceira variável temporária.</em></p>
+                </div>
+                <div class="exercise-card bg-white p-5 rounded-lg border border-slate-200 shadow-sm flex items-start space-x-4">
+                    <span class="bg-slate-100 text-slate-500 text-xs font-bold px-2 py-1 rounded">09</span>
+                    <p class="text-sm"><strong>Calculadora de Reajuste:</strong> Peça o salário de um funcionário e uma porcentagem de aumento. Calcule o novo salário e exiba o valor do aumento e o total final.</p>
+                </div>
+                <div class="exercise-card bg-white p-5 rounded-lg border border-slate-200 shadow-sm flex items-start space-x-4">
+                    <span class="bg-blue-200 text-blue-800 text-xs font-bold px-2 py-1 rounded">10</span>
+                    <p class="text-sm font-semibold"><strong>Desafio do Cinema:</strong> Crie um sistema que peça o nome de um filme, o valor do ingresso e a quantidade de pessoas. No final, exiba um cupom com o nome do filme e o valor total a pagar.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 py-12 px-4 border-t border-slate-800">
+        <div class="container mx-auto text-center">
+            <p class="text-sm mb-4 font-medium uppercase tracking-widest text-slate-500">Módulo de Algoritmos 2026</p>
+            <p class="text-xs italic">"Dados são o novo petróleo, mas variáveis são os barris que os carregam."</p>
+        </div>
+    </footer>
+
+</body>
+</html>

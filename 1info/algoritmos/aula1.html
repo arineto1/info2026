@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 01 - Introdução e Saída de Dados</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .code-font { font-family: 'Fira Code', monospace; }
+        .visualg-keyword { color: #3b82f6; font-weight: bold; }
+        .visualg-string { color: #10b981; }
+        .visualg-comment { color: #94a3b8; font-style: italic; }
+        .visualg-command { color: #f59e0b; }
+        
+        pre {
+            background-color: #1e293b;
+            color: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            overflow-x: auto;
+            border: 1px solid #334155;
+        }
+
+        .exercise-card:hover {
+            transform: translateY(-2px);
+            transition: all 0.2s ease;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 line-tight">
+
+    <!-- Header / Navbar -->
+    <nav class="bg-indigo-700 text-white p-4 sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold tracking-tight">Programação & Algoritmos <span class="text-indigo-200">2026</span></h1>
+            <div class="hidden md:flex space-x-6 text-sm font-medium">
+                <a href="#teoria" class="hover:text-indigo-200 transition">Teoria</a>
+                <a href="#pratica" class="hover:text-indigo-200 transition">Prática</a>
+                <a href="#exercicios" class="hover:text-indigo-200 transition">Exercícios</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="bg-indigo-600 text-white py-16 px-4 text-center">
+        <div class="container mx-auto max-w-4xl">
+            <span class="bg-indigo-500 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">Módulo 1: Visualg</span>
+            <h2 class="text-4xl md:text-5xl font-extrabold mt-4 mb-6">Aula 01: Introdução e Saída de Dados</h2>
+            <p class="text-lg text-indigo-100 max-w-2xl mx-auto">Nesta primeira aula, você aprenderá como o computador processa informações e como fazê-lo exibir suas primeiras mensagens na tela.</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto max-w-5xl px-4 py-12">
+        
+        <!-- Teoria Section -->
+        <section id="teoria" class="mb-20">
+            <div class="flex items-center mb-8">
+                <div class="w-10 h-10 bg-indigo-100 text-indigo-600 rounded-lg flex items-center justify-center mr-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    </svg>
+                </div>
+                <h3 class="text-3xl font-bold">1. Definições Principais</h3>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                    <h4 class="font-bold text-indigo-600 mb-2">O que é Algoritmo?</h4>
+                    <p class="text-slate-600 text-sm">É um conjunto finito de passos organizados para atingir um objetivo. Como uma receita de bolo: se pular o passo de bater os ovos, o bolo não cresce.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                    <h4 class="font-bold text-indigo-600 mb-2">Lógica de Programação</h4>
+                    <p class="text-slate-600 text-sm">É a técnica de encadear pensamentos para atingir a solução. O computador é rápido, mas "burro"; você precisa dar instruções exatas.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                    <h4 class="font-bold text-indigo-600 mb-2">Sintaxe do Visualg</h4>
+                    <p class="text-slate-600 text-sm">É o conjunto de regras de escrita. O código sempre começa com <code>algoritmo</code> e termina com <code>fimalgoritmo</code>.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Prática Section -->
+        <section id="pratica" class="mb-20">
+            <div class="flex items-center mb-8">
+                <div class="w-10 h-10 bg-emerald-100 text-emerald-600 rounded-lg flex items-center justify-center mr-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                    </svg>
+                </div>
+                <h3 class="text-3xl font-bold">2. Exemplos Práticos Comentados</h3>
+            </div>
+
+            <div class="space-y-12">
+                <!-- Exemplo 1 -->
+                <div>
+                    <h4 class="text-xl font-semibold mb-4 flex items-center">
+                        <span class="bg-emerald-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs mr-3">A</span>
+                        Diferença entre Escreva e Escreval
+                    </h4>
+                    <pre class="code-font text-sm leading-relaxed">
+<span class="visualg-keyword">algoritmo</span> <span class="visualg-string">"Exemplo_Quebra_Linha"</span>
+
+<span class="visualg-keyword">inicio</span>
+   <span class="visualg-comment">// O comando 'escreva' NÃO pula linha. O próximo texto ficará grudado.</span>
+   <span class="visualg-command">escreva</span>(<span class="visualg-string">"Olá, "</span>)
+   <span class="visualg-command">escreva</span>(<span class="visualg-string">"Mundo!"</span>)
+   
+   <span class="visualg-comment">// O comando 'escreval' pula para a linha de baixo após escrever.</span>
+   <span class="visualg-command">escreval</span>(<span class="visualg-string">""</span>) <span class="visualg-comment">// Apenas pula uma linha vazia</span>
+   <span class="visualg-command">escreval</span>(<span class="visualg-string">"Eu estou na linha 2."</span>)
+   <span class="visualg-command">escreval</span>(<span class="visualg-string">"Eu estou na linha 3."</span>)
+   
+<span class="visualg-keyword">fimalgoritmo</span></pre>
+                </div>
+
+                <!-- Exemplo 2 -->
+                <div>
+                    <h4 class="text-xl font-semibold mb-4 flex items-center">
+                        <span class="bg-emerald-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs mr-3">B</span>
+                        Criando Interfaces Visuais
+                    </h4>
+                    <pre class="code-font text-sm leading-relaxed">
+<span class="visualg-keyword">algoritmo</span> <span class="visualg-string">"Layout_Console"</span>
+
+<span class="visualg-keyword">inicio</span>
+   <span class="visualg-comment">// Usamos caracteres como '*' e '-' para organizar a tela</span>
+   <span class="visualg-command">escreval</span>(<span class="visualg-string">"============================="</span>)
+   <span class="visualg-command">escreval</span>(<span class="visualg-string">"   LOGIN DO SISTEMA - 2026   "</span>)
+   <span class="visualg-command">escreval</span>(<span class="visualg-string">"============================="</span>)
+   <span class="visualg-command">escreval</span>(<span class="visualg-string">""</span>)
+   <span class="visualg-command">escreval</span>(<span class="visualg-string">"Usuário: [DIGITE AQUI]"</span>)
+   <span class="visualg-command">escreval</span>(<span class="visualg-string">"Senha  : [********]"</span>)
+   <span class="visualg-command">escreval</span>(<span class="visualg-string">""</span>)
+   <span class="visualg-command">escreval</span>(<span class="visualg-string">"-----------------------------"</span>)
+<span class="visualg-keyword">fimalgoritmo</span></pre>
+                </div>
+
+                <!-- Exemplo 3 -->
+                <div>
+                    <h4 class="text-xl font-semibold mb-4 flex items-center">
+                        <span class="bg-emerald-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs mr-3">C</span>
+                        Sequenciamento de Passos (Logística)
+                    </h4>
+                    <pre class="code-font text-sm leading-relaxed">
+<span class="visualg-keyword">algoritmo</span> <span class="visualg-string">"Passo_a_Passo"</span>
+
+<span class="visualg-keyword">inicio</span>
+   <span class="visualg-comment">// A ordem das instruções importa! </span>
+   <span class="visualg-command">escreval</span>(<span class="visualg-string">"ROTINA MATINAL:"</span>)
+   <span class="visualg-command">escreval</span>(<span class="visualg-string">"1. O despertador toca às 06:00."</span>)
+   <span class="visualg-command">escreval</span>(<span class="visualg-string">"2. Abrir os olhos e bocejar."</span>)
+   <span class="visualg-command">escreval</span>(<span class="visualg-string">"3. Levantar da cama."</span>)
+   <span class="visualg-command">escreval</span>(<span class="visualg-string">"4. Escovar os dentes."</span>)
+   <span class="visualg-command">escreval</span>(<span class="visualg-string">"5. Tomar café reforçado."</span>)
+   <span class="visualg-command">escreval</span>(<span class="visualg-string">"---"</span>)
+   <span class="visualg-command">escreval</span>(<span class="visualg-string">"Se invertermos o 3 e o 2, você levanta de olho fechado!"</span>)
+<span class="visualg-keyword">fimalgoritmo</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exercícios Section -->
+        <section id="exercicios" class="mb-20">
+            <div class="flex items-center mb-8">
+                <div class="w-10 h-10 bg-amber-100 text-amber-600 rounded-lg flex items-center justify-center mr-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                    </svg>
+                </div>
+                <h3 class="text-3xl font-bold">3. Exercícios de Fixação</h3>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4">
+                <!-- Exercícios Detalhados -->
+                <div class="exercise-card bg-white p-5 rounded-lg border border-slate-200 shadow-sm flex items-start space-x-4">
+                    <span class="bg-slate-100 text-slate-500 text-xs font-bold px-2 py-1 rounded">01</span>
+                    <p class="text-sm"><strong>Primeiras Palavras:</strong> Desenvolva um algoritmo que apresente sua identidade ao computador. Use o comando <code>escreval</code> para exibir seu nome completo em uma linha e, na linha seguinte, a mensagem: "Olá mundo, estou iniciando minha jornada na programação!"</p>
+                </div>
+                <div class="exercise-card bg-white p-5 rounded-lg border border-slate-200 shadow-sm flex items-start space-x-4">
+                    <span class="bg-slate-100 text-slate-500 text-xs font-bold px-2 py-1 rounded">02</span>
+                    <p class="text-sm"><strong>Localização Geográfica:</strong> Crie um programa que informe onde você está estudando. Exiba o nome da sua cidade na primeira linha e o seu estado na segunda linha. <strong>Regra:</strong> Você deve garantir que as duas informações não fiquem na mesma linha do console.</p>
+                </div>
+                <div class="exercise-card bg-white p-5 rounded-lg border border-slate-200 shadow-sm flex items-start space-x-4">
+                    <span class="bg-slate-100 text-slate-500 text-xs font-bold px-2 py-1 rounded">03</span>
+                    <p class="text-sm"><strong>Arte Digital Básica:</strong> Utilize seus conhecimentos de saída de dados para desenhar um quadrado sólido no console. Ele deve ter 4 linhas e 4 colunas, todo preenchido com a letra <strong>"X"</strong>. Tente manter o alinhamento visual perfeito.</p>
+                </div>
+                <div class="exercise-card bg-white p-5 rounded-lg border border-slate-200 shadow-sm flex items-start space-x-4">
+                    <span class="bg-slate-100 text-slate-500 text-xs font-bold px-2 py-1 rounded">04</span>
+                    <p class="text-sm"><strong>Lista de Tarefas:</strong> Imagine que você precisa organizar seu dia. Escreva um algoritmo que exiba uma lista com 4 tarefas (ex: 1. Acordar, 2. Estudar...). Cada tarefa deve aparecer em uma linha diferente e numerada, facilitando a leitura.</p>
+                </div>
+                <div class="exercise-card bg-white p-5 rounded-lg border border-slate-200 shadow-sm flex items-start space-x-4">
+                    <span class="bg-slate-100 text-slate-500 text-xs font-bold px-2 py-1 rounded">05</span>
+                    <p class="text-sm"><strong>Ficha de Perfil:</strong> Simule a exibição de um "Card de Usuário". O programa deve mostrar quatro categorias fixas: <code>NOME:</code>, <code>IDADE:</code>, <code>CIDADE:</code> e <code>HOBBY:</code>. Preencha com seus dados reais logo à frente das categorias, organizando uma por linha.</p>
+                </div>
+                <div class="exercise-card bg-white p-5 rounded-lg border border-slate-200 shadow-sm flex items-start space-x-4">
+                    <span class="bg-slate-100 text-slate-500 text-xs font-bold px-2 py-1 rounded">06</span>
+                    <p class="text-sm"><strong>Cabeçalho de Tabela:</strong> Desenvolva a estrutura superior de um relatório de estoque. A saída deve exibir exatamente assim: <code>| PRODUTO | QTD | PREÇO |</code>. Abaixo dessa linha, crie uma divisória usando hífens <code>(---)</code> para separar o título dos dados.</p>
+                </div>
+                <div class="exercise-card bg-white p-5 rounded-lg border border-slate-200 shadow-sm flex items-start space-x-4">
+                    <span class="bg-slate-100 text-slate-500 text-xs font-bold px-2 py-1 rounded">07</span>
+                    <p class="text-sm"><strong>Lógica Sequencial:</strong> Escreva o passo a passo lógico para a tarefa "Fazer um Miojo". Você deve usar pelo menos 6 linhas de comando, descrevendo desde colocar a água no fogo até servir no prato. A ordem das instruções deve ser coerente.</p>
+                </div>
+                <div class="exercise-card bg-white p-5 rounded-lg border border-slate-200 shadow-sm flex items-start space-x-4">
+                    <span class="bg-slate-100 text-slate-500 text-xs font-bold px-2 py-1 rounded">08</span>
+                    <p class="text-sm"><strong>O Desafio do Espaçamento:</strong> Use apenas o comando <code>escreva</code> (sem o "L" final) quatro vezes seguidas para montar a frase "EU GOSTO DE ALGORITMOS". <strong>Atenção:</strong> Como você vai garantir que as palavras não fiquem grudadas umas nas outras?</p>
+                </div>
+                <div class="exercise-card bg-white p-5 rounded-lg border border-slate-200 shadow-sm flex items-start space-x-4">
+                    <span class="bg-slate-100 text-slate-500 text-xs font-bold px-2 py-1 rounded">09</span>
+                    <p class="text-sm"><strong>Geometria no Console:</strong> Tente desenhar um triângulo (pirâmide) simples no centro da tela. Use barras inclinadas <code>/ \</code> para as laterais e o caractere underline <code>_</code> para fechar a base. Use espaços em branco para centralizar o topo.</p>
+                </div>
+                <div class="exercise-card bg-white p-5 rounded-lg border border-slate-200 shadow-sm flex items-start space-x-4">
+                    <span class="bg-slate-200 text-indigo-600 text-xs font-bold px-2 py-1 rounded">10</span>
+                    <p class="text-sm font-semibold"><strong>Desafio Master:</strong> Crie um "Cupom Fiscal de Mercado". O topo deve ter o nome da "LOJA ALGORITMOS 2026", seguido por uma linha tracejada. Liste 2 produtos com preços e, no final, exiba o "TOTAL" dentro de uma moldura de asteriscos.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 py-12 px-4 border-t border-slate-800">
+        <div class="container mx-auto text-center">
+            <p class="text-sm mb-4 font-medium uppercase tracking-widest text-slate-500">Módulo de Algoritmos 2026</p>
+            <p class="text-xs italic">"A lógica é o princípio da sabedoria, não o fim." — Spock (adaptado)</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll simples para navegação
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
