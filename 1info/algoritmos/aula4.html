@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 04 - Operadores Relacionais e Lógicos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .code-font { font-family: 'Fira Code', monospace; }
+        .visualg-keyword { color: #3b82f6; font-weight: bold; }
+        .visualg-string { color: #10b981; }
+        .visualg-comment { color: #94a3b8; font-style: italic; }
+        .visualg-command { color: #f59e0b; }
+        .visualg-type { color: #ec4899; font-weight: bold; }
+        
+        pre {
+            background-color: #1e293b;
+            color: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            overflow-x: auto;
+            border: 1px solid #334155;
+        }
+
+        .logic-card {
+            transition: all 0.3s ease;
+        }
+        .logic-card:hover {
+            border-color: #8b5cf6;
+            background-color: #f5f3ff;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 line-tight">
+
+    <!-- Header / Navbar -->
+    <nav class="bg-violet-700 text-white p-4 sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold tracking-tight">Programação & Algoritmos <span class="text-violet-200">2026</span></h1>
+            <div class="hidden md:flex space-x-6 text-sm font-medium">
+                <a href="#teoria" class="hover:text-violet-200 transition">Teoria</a>
+                <a href="#pratica" class="hover:text-violet-200 transition">Prática</a>
+                <a href="#exercicios" class="hover:text-violet-200 transition">Exercícios</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="bg-violet-600 text-white py-16 px-4 text-center">
+        <div class="container mx-auto max-w-4xl">
+            <span class="bg-violet-500 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">Módulo 1: Visualg</span>
+            <h2 class="text-4xl md:text-5xl font-extrabold mt-4 mb-6">Aula 04: Operadores Relacionais e Lógicos</h2>
+            <p class="text-lg text-violet-100 max-w-2xl mx-auto">Ensine o seu algoritmo a comparar valores. É através da lógica que os sistemas decidem se um utilizador pode ou não aceder a uma funcionalidade.</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto max-w-5xl px-4 py-12">
+        
+        <!-- Teoria Section -->
+        <section id="teoria" class="mb-20">
+            <div class="flex items-center mb-8">
+                <div class="w-10 h-10 bg-violet-100 text-violet-600 rounded-lg flex items-center justify-center mr-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+                <h3 class="text-3xl font-bold">1. A Arte de Comparar</h3>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h4 class="font-bold text-violet-700 mb-4 border-b pb-2 uppercase text-sm tracking-wider">Operadores Relacionais</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex justify-between p-2 bg-white rounded border border-slate-200"><span>Igual a</span> <code class="font-bold text-violet-600">=</code></li>
+                        <li class="flex justify-between p-2 bg-white rounded border border-slate-200"><span>Diferente de</span> <code class="font-bold text-violet-600">&lt;&gt;</code></li>
+                        <li class="flex justify-between p-2 bg-white rounded border border-slate-200"><span>Maior que</span> <code class="font-bold text-violet-600">&gt;</code></li>
+                        <li class="flex justify-between p-2 bg-white rounded border border-slate-200"><span>Menor que</span> <code class="font-bold text-violet-600">&lt;</code></li>
+                        <li class="flex justify-between p-2 bg-white rounded border border-slate-200"><span>Maior ou Igual</span> <code class="font-bold text-violet-600">&gt;=</code></li>
+                        <li class="flex justify-between p-2 bg-white rounded border border-slate-200"><span>Menor ou Igual</span> <code class="font-bold text-violet-600">&lt;=</code></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-violet-700 mb-4 border-b pb-2 uppercase text-sm tracking-wider">Operadores Lógicos</h4>
+                    <div class="space-y-4">
+                        <div class="bg-white p-4 rounded-lg border border-slate-200">
+                            <span class="font-bold text-indigo-600">E (AND):</span>
+                            <p class="text-xs text-slate-500">Só é VERDADEIRO se ambas as condições forem verdadeiras.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg border border-slate-200">
+                            <span class="font-bold text-indigo-600">OU (OR):</span>
+                            <p class="text-xs text-slate-500">É VERDADEIRO se pelo menos uma das condições for verdadeira.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg border border-slate-200">
+                            <span class="font-bold text-indigo-600">NAO (NOT):</span>
+                            <p class="text-xs text-slate-500">Inverte o resultado. O que é Verdade vira Falso e vice-versa.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Prática Section -->
+        <section id="pratica" class="mb-20">
+            <div class="flex items-center mb-8">
+                <div class="w-10 h-10 bg-emerald-100 text-emerald-600 rounded-lg flex items-center justify-center mr-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                    </svg>
+                </div>
+                <h3 class="text-3xl font-bold">2. Prática Explicada</h3>
+            </div>
+
+            <div class="space-y-12">
+                <!-- Exemplo A -->
+                <div>
+                    <h4 class="text-xl font-semibold mb-4 flex items-center">
+                        <span class="bg-emerald-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs mr-3">A</span>
+                        Comparações Simples
+                    </h4>
+                    <pre class="code-font text-sm leading-relaxed">
+<span class="visualg-keyword">algoritmo</span> <span class="visualg-string">"Testes_Relacionais"</span>
+<span class="visualg-keyword">var</span>
+   n1, n2 : <span class="visualg-type">inteiro</span>
+   teste : <span class="visualg-type">logico</span>
+<span class="visualg-keyword">inicio</span>
+   n1 <- 10
+   n2 <- 20
+   
+   <span class="visualg-comment">// Perguntamos: "O n1 é maior que o n2?"</span>
+   teste <- n1 > n2
+   
+   <span class="visualg-command">escreval</span>(<span class="visualg-string">"O valor 10 é maior que 20? "</span>, teste)
+   
+   <span class="visualg-comment">// Perguntamos: "O n1 é diferente do n2?"</span>
+   teste <- n1 <> n2
+   <span class="visualg-command">escreval</span>(<span class="visualg-string">"O valor 10 é diferente de 20? "</span>, teste)
+<span class="visualg-keyword">fimalgoritmo</span></pre>
+                </div>
+
+                <!-- Exemplo B -->
+                <div>
+                    <h4 class="text-xl font-semibold mb-4 flex items-center">
+                        <span class="bg-emerald-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs mr-3">B</span>
+                        Combinação com Operador Lógico "E"
+                    </h4>
+                    <pre class="code-font text-sm leading-relaxed">
+<span class="visualg-keyword">algoritmo</span> <span class="visualg-string">"Acesso_Sistema"</span>
+<span class="visualg-keyword">var</span>
+   idade : <span class="visualg-type">inteiro</span>
+   tem_bilhete : <span class="visualg-type">logico</span>
+   pode_entrar : <span class="visualg-type">logico</span>
+<span class="visualg-keyword">inicio</span>
+   idade <- 20
+   tem_bilhete <- <span class="visualg-keyword">verdadeiro</span>
+   
+   <span class="visualg-comment">// Para entrar, precisa ter 18 anos OU MAIS E ter o bilhete</span>
+   pode_entrar <- (idade >= 18) <span class="visualg-keyword">e</span> (tem_bilhete = <span class="visualg-keyword">verdadeiro</span>)
+   
+   <span class="visualg-command">escreval</span>(<span class="visualg-string">"O utilizador pode entrar no evento? "</span>, pode_entrar)
+<span class="visualg-keyword">fimalgoritmo</span></pre>
+                </div>
+
+                <!-- Exemplo C -->
+                <div>
+                    <h4 class="text-xl font-semibold mb-4 flex items-center">
+                        <span class="bg-emerald-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs mr-3">C</span>
+                        A Liberdade do Operador "OU"
+                    </h4>
+                    <pre class="code-font text-sm leading-relaxed">
+<span class="visualg-keyword">algoritmo</span> <span class="visualg-string">"Desconto_Cinema"</span>
+<span class="visualg-keyword">var</span>
+   estudante, idoso, tem_desconto : <span class="visualg-type">logico</span>
+<span class="visualg-keyword">inicio</span>
+   estudante <- <span class="visualg-keyword">falso</span>
+   idoso <- <span class="visualg-keyword">verdadeiro</span>
+   
+   <span class="visualg-comment">// Ganha desconto se for estudante OU se for idoso</span>
+   tem_desconto <- estudante <span class="visualg-keyword">ou</span> idoso
+   
+   <span class="visualg-command">escreval</span>(<span class="visualg-string">"Este cliente tem direito a desconto? "</span>, tem_desconto)
+<span class="visualg-keyword">fimalgoritmo</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exercícios Section -->
+        <section id="exercicios" class="mb-20">
+            <div class="flex items-center mb-8">
+                <div class="w-10 h-10 bg-amber-100 text-amber-600 rounded-lg flex items-center justify-center mr-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                    </svg>
+                </div>
+                <h3 class="text-3xl font-bold">3. Exercícios de Lógica Aplicada</h3>
+            </div>
+
+            <div class="space-y-4">
+                <div class="bg-white p-6 rounded-xl border-l-4 border-violet-500 shadow-sm">
+                    <p class="font-bold mb-2">01. Verificador de Meta:</p>
+                    <p class="text-sm text-slate-600">Peça ao utilizador o valor das vendas do mês. Crie uma variável lógica que armazene se ele atingiu a meta (Vendas > 5000). Exiba o resultado lógico.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border-l-4 border-violet-500 shadow-sm">
+                    <p class="font-bold mb-2">02. Identidade em Check:</p>
+                    <p class="text-sm text-slate-600">Solicite dois nomes. Verifique se os nomes digitados são exatamente iguais e exiba o resultado (Verdadeiro/Falso).</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border-l-4 border-violet-500 shadow-sm">
+                    <p class="font-bold mb-2">03. Idade de Isenção:</p>
+                    <p class="text-sm text-slate-600">No transporte público, crianças menores de 5 anos ou idosos com 65 anos ou mais não pagam. Receba a idade e diga se a pessoa tem isenção (Verdadeiro ou Falso).</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border-l-4 border-violet-500 shadow-sm">
+                    <p class="font-bold mb-2">04. Número no Intervalo:</p>
+                    <p class="text-sm text-slate-600">Peça um número e verifique se ele está entre 10 e 20 (inclusive). Para isso, o número deve ser >= 10 E <= 20.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border-l-4 border-violet-500 shadow-sm">
+                    <p class="font-bold mb-2">05. Sistema de Login:</p>
+                    <p class="text-sm text-slate-600">Defina uma variável "senha_correta" com o valor "1234". Peça ao utilizador para digitar uma senha e mostre se o acesso foi concedido (Digitada = Correta).</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border-l-4 border-violet-500 shadow-sm">
+                    <p class="font-bold mb-2">06. Múltiplo de 5:</p>
+                    <p class="text-sm text-slate-600">Receba um número e verifique se ele é múltiplo de 5. Dica: use o operador de resto <code>%</code> e verifique se o resultado é igual a 0.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border-l-4 border-violet-500 shadow-sm">
+                    <p class="font-bold mb-2">07. Benefício Social:</p>
+                    <p class="text-sm text-slate-600">Uma pessoa tem direito a auxílio se estiver desempregada OU se tiver renda menor que 1000 euros. Receba estas duas informações e exiba o direito ao benefício.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border-l-4 border-violet-500 shadow-sm">
+                    <p class="font-bold mb-2">08. Validação de Triângulo:</p>
+                    <p class="text-sm text-slate-600">Receba três lados (A, B, C). Verifique se eles podem formar um triângulo. A regra é: (A+B > C) E (A+C > B) E (B+C > A).</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border-l-4 border-violet-500 shadow-sm">
+                    <p class="font-bold mb-2">09. Aprovação Académica:</p>
+                    <p class="text-sm text-slate-600">Para passar, um aluno precisa de Média >= 7.0 E Presença >= 75%. Receba os dois valores e mostre a situação lógica final.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border-l-4 border-indigo-600 shadow-md bg-indigo-50">
+                    <p class="font-bold mb-2 text-indigo-700">10. Desafio Master: Votação Obrigatória</p>
+                    <p class="text-sm text-indigo-900 italic">Crie um sistema que receba a idade de uma pessoa. Ela é obrigada a votar se tiver entre 18 e 70 anos (inclusive). Use os operadores relacionais e o operador "E" para validar.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 py-12 px-4 border-t border-slate-800">
+        <div class="container mx-auto text-center">
+            <p class="text-sm mb-4 font-medium uppercase tracking-widest text-slate-500">Módulo de Algoritmos 2026</p>
+            <p class="text-xs italic">"A lógica não te diz o que pensar, mas sim como pensar sem erros."</p>
+        </div>
+    </footer>
+
+</body>
+</html>

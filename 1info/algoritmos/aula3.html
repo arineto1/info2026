@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 03 - Operadores Aritméticos e Expressões</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .code-font { font-family: 'Fira Code', monospace; }
+        .visualg-keyword { color: #3b82f6; font-weight: bold; }
+        .visualg-string { color: #10b981; }
+        .visualg-comment { color: #94a3b8; font-style: italic; }
+        .visualg-command { color: #f59e0b; }
+        .visualg-type { color: #ec4899; font-weight: bold; }
+        
+        pre {
+            background-color: #1e293b;
+            color: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            overflow-x: auto;
+            border: 1px solid #334155;
+        }
+
+        .operator-badge {
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.375rem;
+            font-family: 'Fira Code', monospace;
+            font-weight: bold;
+            color: #4338ca;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 line-tight">
+
+    <!-- Header / Navbar -->
+    <nav class="bg-orange-700 text-white p-4 sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold tracking-tight">Programação & Algoritmos <span class="text-orange-200">2026</span></h1>
+            <div class="hidden md:flex space-x-6 text-sm font-medium">
+                <a href="#teoria" class="hover:text-orange-200 transition">Teoria</a>
+                <a href="#pratica" class="hover:text-orange-200 transition">Prática</a>
+                <a href="#exercicios" class="hover:text-orange-200 transition">Exercícios</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="bg-orange-600 text-white py-16 px-4 text-center">
+        <div class="container mx-auto max-w-4xl">
+            <span class="bg-orange-500 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">Módulo 1: Visualg</span>
+            <h2 class="text-4xl md:text-5xl font-extrabold mt-4 mb-6">Aula 03: Operadores e Expressões</h2>
+            <p class="text-lg text-orange-100 max-w-2xl mx-auto">Transforme seu computador em uma calculadora potente. Aprenda a manipular números e criar fórmulas para resolver problemas reais.</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto max-w-5xl px-4 py-12">
+        
+        <!-- Teoria Section -->
+        <section id="teoria" class="mb-20">
+            <div class="flex items-center mb-8">
+                <div class="w-10 h-10 bg-orange-100 text-orange-600 rounded-lg flex items-center justify-center mr-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                    </svg>
+                </div>
+                <h3 class="text-3xl font-bold">1. Operadores Aritméticos</h3>
+            </div>
+            
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                <table class="w-full text-left border-collapse">
+                    <thead class="bg-slate-50 border-b border-slate-200 text-slate-500 text-sm">
+                        <tr>
+                            <th class="p-4 font-semibold">Operação</th>
+                            <th class="p-4 font-semibold">Símbolo</th>
+                            <th class="p-4 font-semibold">Exemplo</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-slate-600">
+                        <tr class="border-b border-slate-100">
+                            <td class="p-4">Adição e Subtração</td>
+                            <td class="p-4"><span class="operator-badge">+</span> <span class="operator-badge">-</span></td>
+                            <td class="p-4">10 + 5 = 15</td>
+                        </tr>
+                        <tr class="border-b border-slate-100">
+                            <td class="p-4">Multiplicação e Divisão Real</td>
+                            <td class="p-4"><span class="operator-badge">*</span> <span class="operator-badge">/</span></td>
+                            <td class="p-4">10 / 4 = 2.5</td>
+                        </tr>
+                        <tr class="border-b border-slate-100">
+                            <td class="p-4">Divisão Inteira (Quociente)</td>
+                            <td class="p-4"><span class="operator-badge">\</span></td>
+                            <td class="p-4">10 \ 4 = 2</td>
+                        </tr>
+                        <tr class="border-b border-slate-100">
+                            <td class="p-4">Resto da Divisão (Módulo)</td>
+                            <td class="p-4"><span class="operator-badge">%</span> ou <span class="operator-badge">mod</span></td>
+                            <td class="p-4">10 % 3 = 1</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4">Potência</td>
+                            <td class="p-4"><span class="operator-badge">^</span></td>
+                            <td class="p-4">2 ^ 3 = 8</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="mt-8 bg-blue-50 border-l-4 border-blue-400 p-4">
+                <p class="text-sm text-blue-800"><strong>Ordem de Precedência:</strong> Parênteses <code>()</code> vêm primeiro, seguidos por Potência <code>^</code>, depois Multiplicação/Divisão e, por último, Soma/Subtração.</p>
+            </div>
+        </section>
+
+        <!-- Prática Section -->
+        <section id="pratica" class="mb-20">
+            <div class="flex items-center mb-8">
+                <div class="w-10 h-10 bg-emerald-100 text-emerald-600 rounded-lg flex items-center justify-center mr-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                    </svg>
+                </div>
+                <h3 class="text-3xl font-bold">2. Prática Explicada</h3>
+            </div>
+
+            <div class="space-y-12">
+                <!-- Exemplo A -->
+                <div>
+                    <h4 class="text-xl font-semibold mb-4 flex items-center">
+                        <span class="bg-emerald-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs mr-3">A</span>
+                        Cálculos Básicos e Precedência
+                    </h4>
+                    <pre class="code-font text-sm leading-relaxed">
+<span class="visualg-keyword">algoritmo</span> <span class="visualg-string">"Calculos_Matematicos"</span>
+<span class="visualg-keyword">var</span>
+   v1, v2, resultado : <span class="visualg-type">real</span>
+<span class="visualg-keyword">inicio</span>
+   v1 <- 10
+   v2 <- 2
+   
+   <span class="visualg-comment">// O uso de parênteses garante que a soma ocorra antes da multiplicação</span>
+   resultado <- (v1 + 5) * v2
+   
+   <span class="visualg-command">escreval</span>(<span class="visualg-string">"Resultado da expressão (10+5)*2 é: "</span>, resultado)
+<span class="visualg-keyword">fimalgoritmo</span></pre>
+                </div>
+
+                <!-- Exemplo B -->
+                <div>
+                    <h4 class="text-xl font-semibold mb-4 flex items-center">
+                        <span class="bg-emerald-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs mr-3">B</span>
+                        Divisão Inteira vs Resto (MOD)
+                    </h4>
+                    <pre class="code-font text-sm leading-relaxed">
+<span class="visualg-keyword">algoritmo</span> <span class="visualg-string">"Divisao_E_Resto"</span>
+<span class="visualg-keyword">var</span>
+   total, parte, sobra : <span class="visualg-type">inteiro</span>
+<span class="visualg-keyword">inicio</span>
+   total <- 10
+   
+   <span class="visualg-comment">// Quantas vezes o 3 cabe inteiro dentro do 10?</span>
+   parte <- total \ 3 
+   
+   <span class="visualg-comment">// O que sobra dessa divisão?</span>
+   sobra <- total % 3
+   
+   <span class="visualg-command">escreval</span>(<span class="visualg-string">"Dividindo 10 por 3..."</span>)
+   <span class="visualg-command">escreval</span>(<span class="visualg-string">"Resultado inteiro: "</span>, parte)
+   <span class="visualg-command">escreval</span>(<span class="visualg-string">"Resto da divisão: "</span>, sobra)
+<span class="visualg-keyword">fimalgoritmo</span></pre>
+                </div>
+
+                <!-- Exemplo C -->
+                <div>
+                    <h4 class="text-xl font-semibold mb-4 flex items-center">
+                        <span class="bg-emerald-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs mr-3">C</span>
+                        Potência e Raiz Quadrada
+                    </h4>
+                    <pre class="code-font text-sm leading-relaxed">
+<span class="visualg-keyword">algoritmo</span> <span class="visualg-string">"Funcoes_Aritmeticas"</span>
+<span class="visualg-keyword">var</span>
+   base, expoente, pot, raiz : <span class="visualg-type">real</span>
+<span class="visualg-keyword">inicio</span>
+   base <- 9
+   
+   <span class="visualg-comment">// Elevando ao quadrado</span>
+   pot <- base ^ 2
+   
+   <span class="visualg-comment">// Calculando a raiz quadrada usando a função interna raizq()</span>
+   raiz <- raizq(base)
+   
+   <span class="visualg-command">escreval</span>(<span class="visualg-string">"9 elevado ao quadrado é: "</span>, pot)
+   <span class="visualg-command">escreval</span>(<span class="visualg-string">"A raiz quadrada de 9 é: "</span>, raiz)
+<span class="visualg-keyword">fimalgoritmo</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exercícios Section -->
+        <section id="exercicios" class="mb-20">
+            <div class="flex items-center mb-8">
+                <div class="w-10 h-10 bg-amber-100 text-amber-600 rounded-lg flex items-center justify-center mr-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                    </svg>
+                </div>
+                <h3 class="text-3xl font-bold">3. Atividades de Fixação</h3>
+            </div>
+
+            <div class="grid md:grid-cols-1 gap-4">
+                <div class="bg-white p-6 rounded-lg border border-slate-200 shadow-sm">
+                    <ul class="space-y-6">
+                        <li class="flex items-start">
+                            <span class="bg-orange-100 text-orange-700 font-bold px-3 py-1 rounded-md mr-4">01</span>
+                            <div>
+                                <p class="font-semibold">Média Simples:</p>
+                                <p class="text-slate-600 text-sm">Crie um programa que receba 4 notas bimestrais, calcule a média aritmética e exiba o resultado final. Use o tipo <code>real</code>.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="bg-orange-100 text-orange-700 font-bold px-3 py-1 rounded-md mr-4">02</span>
+                            <div>
+                                <p class="font-semibold">Dobro e Terça Parte:</p>
+                                <p class="text-slate-600 text-sm">Desenvolva um algoritmo que leia um número real e mostre o seu dobro e a sua terça parte (divisão por 3).</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="bg-orange-100 text-orange-700 font-bold px-3 py-1 rounded-md mr-4">03</span>
+                            <div>
+                                <p class="font-semibold">Conversor de Temperatura:</p>
+                                <p class="text-slate-600 text-sm">Peça a temperatura em graus <strong>Celsius</strong> e transforme-a em <strong>Fahrenheit</strong> usando a fórmula: <code>F = (C * 1.8) + 32</code>.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="bg-orange-100 text-orange-700 font-bold px-3 py-1 rounded-md mr-4">04</span>
+                            <div>
+                                <p class="font-semibold">Cálculo de Delta:</p>
+                                <p class="text-slate-600 text-sm">Crie um algoritmo que receba os valores de A, B e C e calcule o valor de Delta ($\Delta = B^2 - 4AC$). Use o operador de potência <code>^</code>.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="bg-orange-100 text-orange-700 font-bold px-3 py-1 rounded-md mr-4">05</span>
+                            <div>
+                                <p class="font-semibold">Promoção de Loja:</p>
+                                <p class="text-slate-600 text-sm">Uma loja oferece 15% de desconto para pagamentos à vista. Peça o preço do produto e exiba: o valor do desconto e o novo preço com desconto.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="bg-orange-100 text-orange-700 font-bold px-3 py-1 rounded-md mr-4">06</span>
+                            <div>
+                                <p class="font-semibold">Conversor de Tempo:</p>
+                                <p class="text-slate-600 text-sm">Peça ao usuário um valor em <strong>minutos</strong> e transforme-o para <strong>segundos</strong>. Depois, faça o inverso: peça segundos e diga quantos minutos completos ele possui (use divisão inteira <code>\</code>).</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="bg-orange-100 text-orange-700 font-bold px-3 py-1 rounded-md mr-4">07</span>
+                            <div>
+                                <p class="font-semibold">Divisão de Conta:</p>
+                                <p class="text-slate-600 text-sm">Três amigos foram jantar. Peça o valor total da conta, calcule 10% de taxa de serviço, some ao total e divida o valor final igualmente entre os três amigos.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="bg-orange-100 text-orange-700 font-bold px-3 py-1 rounded-md mr-4">08</span>
+                            <div>
+                                <p class="font-semibold">Par ou Ímpar (Lógica):</p>
+                                <p class="text-slate-600 text-sm">Leia um número inteiro e exiba apenas o resto da divisão dele por 2. (Explique ao aluno que se o resto for 0, o número é par; se for 1, é ímpar).</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="bg-orange-100 text-orange-700 font-bold px-3 py-1 rounded-md mr-4">09</span>
+                            <div>
+                                <p class="font-semibold">Pintando a Parede:</p>
+                                <p class="text-slate-600 text-sm">Peça a largura e a altura de uma parede em metros. Calcule a área e a quantidade de tinta necessária, sabendo que cada litro de tinta pinta 2 metros quadrados.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="bg-orange-600 text-white font-bold px-3 py-1 rounded-md mr-4">10</span>
+                            <div>
+                                <p class="font-semibold">Desafio do Salário com Comissão:</p>
+                                <p class="text-slate-600 text-sm italic">Um vendedor ganha um salário fixo mais 4% de comissão sobre suas vendas. Receba o salário fixo e o valor total de suas vendas no mês. Calcule a comissão e o salário final que o vendedor receberá.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 py-12 px-4 border-t border-slate-800">
+        <div class="container mx-auto text-center">
+            <p class="text-sm mb-4 font-medium uppercase tracking-widest text-slate-500">Módulo de Algoritmos 2026</p>
+            <p class="text-xs italic">"Um bom programador não decora fórmulas, ele entende como combiná-las."</p>
+        </div>
+    </footer>
+
+</body>
+</html>

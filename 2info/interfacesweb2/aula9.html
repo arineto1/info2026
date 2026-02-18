@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 09 - Dominando o classList</title>
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --secondary: #1d4ed8;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --code-bg: #0f172a;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            transition: background 0.5s;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 50px 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 0 0 24px 24px;
+            margin-bottom: 30px;
+        }
+
+        section {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: var(--primary);
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 10px;
+        }
+
+        /* --- CLASSES QUE O JS VAI CONTROLAR --- */
+        .cartao {
+            padding: 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.4s ease;
+        }
+
+        .destaque {
+            border-color: #f59e0b;
+            background-color: #fef3c7;
+            transform: scale(1.05);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        }
+
+        .esgotado {
+            background-color: #fee2e2;
+            border-color: #ef4444;
+            opacity: 0.6;
+            filter: grayscale(1);
+        }
+
+        .dark-mode {
+            background-color: #1e293b;
+            color: #f8fafc;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 12px 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        button:hover { background: var(--secondary); transform: translateY(-2px); }
+
+        /* Blocos de Código Coloridos */
+        pre {
+            background: var(--code-bg);
+            color: #9cdcfe;
+            padding: 25px;
+            border-radius: 12px;
+            overflow-x: auto;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        .c-comment { color: #6a9955; }
+        .c-kw { color: #c586c0; }
+        .c-tag { color: #569cd6; }
+        .c-attr { color: #9cdcfe; }
+        .c-str { color: #ce9178; }
+        .c-style { color: #e74c3c; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Aula 09: Gestão de Classes Profissional</h1>
+    <p>Utilizando o classList para separar o visual (CSS) da lógica (JS).</p>
+</header>
+
+<div class="container">
+
+    <!-- 1. INTRODUÇÃO -->
+    <section>
+        <h2>1. O objeto classList</h2>
+        <p>A forma correta de alterar estilos é ter as classes prontas no CSS e usar o JavaScript apenas como um interruptor. O objeto <code>classList</code> é a ferramenta ideal para isso.</p>
+        <ul>
+            <li><strong>add("classe"):</strong> Liga o estilo.</li>
+            <li><strong>remove("classe"):</strong> Desliga o estilo.</li>
+            <li><strong>toggle("classe"):</strong> Alterna o estado (interruptor).</li>
+            <li><strong>contains("classe"):</strong> Verifica se o estilo está ativo (retorna true ou false).</li>
+        </ul>
+    </section>
+
+    <!-- 2. PRÁTICA INTERATIVA -->
+    <section>
+        <h2>2. Laboratório: Simulador de Loja</h2>
+        <p>Interage com o componente abaixo. Repara como o JavaScript não muda cores diretamente, apenas ativa as classes CSS.</p>
+        
+        <div id="meu-produto" class="cartao">
+            <h3>Consola de Jogos Next-Gen</h3>
+            <p id="info-status">Estado: Em Stock 📦</p>
+        </div>
+
+        <div class="btn-group">
+            <button onclick="aplicarDestaque()">Promover (Add)</button>
+            <button onclick="removerDestaque()">Normal (Remove)</button>
+            <button onclick="alternarModo()">Dark Mode (Toggle)</button>
+            <button onclick="marcarEsgotado()">Esgotar (Add)</button>
+        </div>
+    </section>
+
+    <!-- 3. CÓDIGO EXEMPLO COMPLETO -->
+    <section>
+        <h2>3. Código Exemplo (Ficheiro Único Completo)</h2>
+        <p>Este código abaixo é um exemplo real. Se copiares tudo para um ficheiro .html, ele funcionará perfeitamente:</p>
+        
+        <pre><code><span class="c-tag">&lt;!DOCTYPE html&gt;</span>
+<span class="c-tag">&lt;html</span> <span class="c-attr">lang</span>=<span class="c-str">"pt-pt"</span><span class="c-tag">&gt;</span>
+<span class="c-tag">&lt;head&gt;</span>
+    <span class="c-tag">&lt;title&gt;</span>Exemplo classList<span class="c-tag">&lt;/title&gt;</span>
+    <span class="c-style">&lt;style&gt;</span>
+        <span class="c-comment">/* CSS: Definimos os visuais primeiro */</span>
+        <span class="c-kw">.caixa</span> { <span class="c-attr">padding</span>: 20px; <span class="c-attr">border</span>: 1px solid #333; }
+        <span class="c-kw">.ativo</span> { <span class="c-attr">background-color</span>: #4caf50; <span class="c-attr">color</span>: white; }
+    <span class="c-style">&lt;/style&gt;</span>
+<span class="c-tag">&lt;/head&gt;</span>
+<span class="c-tag">&lt;body&gt;</span>
+
+    <span class="c-tag">&lt;div</span> <span class="c-attr">id</span>=<span class="c-str">"meuItem"</span> <span class="c-attr">class</span>=<span class="c-str">"caixa"</span><span class="c-tag">&gt;</span>Conteúdo do Item<span class="c-tag">&lt;/div&gt;</span>
+    <span class="c-tag">&lt;button</span> <span class="c-attr">onclick</span>=<span class="c-str">"alternar()"</span><span class="c-tag">&gt;</span>Alternar Estilo<span class="c-tag">&lt;/button&gt;</span>
+
+    <span class="c-style">&lt;script&gt;</span>
+        <span class="c-kw">function</span> <span class="c-tag">alternar</span>() {
+            <span class="c-comment">// 1. Selecionamos o elemento pelo ID</span>
+            <span class="c-kw">const</span> elemento = document.getElementById(<span class="c-str">'meuItem'</span>);
+            
+            <span class="c-comment">// 2. Usamos o toggle para ligar/desligar a classe 'ativo'</span>
+            elemento.classList.toggle(<span class="c-str">'ativo'</span>);
+            
+            <span class="c-comment">// 3. Verificamos se a classe existe para dar um feedback</span>
+            <span class="c-kw">if</span> (elemento.classList.contains(<span class="c-str">'ativo'</span>)) {
+                console.log(<span class="c-str">"O item agora está com o estilo Ativo!"</span>);
+            }
+        }
+    <span class="c-style">&lt;/script&gt;</span>
+
+<span class="c-tag">&lt;/body&gt;</span>
+<span class="c-tag">&lt;/html&gt;</span></code></pre>
+    </section>
+
+    <!-- 4. ATIVIDADES -->
+    <section style="border-left: 6px solid var(--primary);">
+        <h2>4. Atividades de Fixação</h2>
+        <ul class="tasks">
+            <li><strong>Tarefa 1:</strong> Altera a função <code>marcarEsgotado</code> para que, além da classe "esgotado", ela mude o texto para "PRODUTO INDISPONÍVEL".</li>
+            <li><strong>Tarefa 2:</strong> Cria no CSS uma classe chamada <code>.aviso</code> (com texto vermelho e negrito) e faz um botão que a adicione ao clicar.</li>
+            <li><strong>Tarefa 3:</strong> Usa o método <code>contains</code> para impedir que um produto "esgotado" possa receber a classe "destaque".</li>
+            <li><strong>Tarefa 4:</strong> Cria uma função "Limpar Estilos" que utilize <code>remove</code> para retirar as classes "destaque", "esgotado" e "dark-mode" ao mesmo tempo.</li>
+            <li><strong>Tarefa 5:</strong> Adiciona um botão que alterna uma classe <code>.invisivel</code> (que usa <code>display: none</code>) para esconder o produto.</li>
+        </ul>
+    </section>
+
+</div>
+
+<script>
+    // Lógica da Aula 09
+    const prod = document.getElementById('meu-produto');
+    const statusTxt = document.getElementById('info-status');
+
+    const aplicarDestaque = () => {
+        // Verifica se está esgotado antes de destacar
+        if (prod.classList.contains('esgotado')) {
+            console.log("Não é possível destacar um item esgotado.");
+            return;
+        }
+        prod.classList.add('destaque');
+    };
+
+    const removerDestaque = () => {
+        prod.classList.remove('destaque');
+    };
+
+    const alternarModo = () => {
+        prod.classList.toggle('dark-mode');
+    };
+
+    const marcarEsgotado = () => {
+        prod.classList.add('esgotado');
+        prod.classList.remove('destaque'); // Remove destaque se esgotar
+        statusTxt.innerText = "Estado: ESGOTADO ❌";
+    };
+</script>
+
+</body>
+</html>

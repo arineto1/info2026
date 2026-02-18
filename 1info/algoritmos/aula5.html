@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 05 - Estruturas Condicionais (SE/SENÃO)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .code-font { font-family: 'Fira Code', monospace; }
+        .visualg-keyword { color: #3b82f6; font-weight: bold; }
+        .visualg-string { color: #10b981; }
+        .visualg-comment { color: #94a3b8; font-style: italic; }
+        .visualg-command { color: #f59e0b; }
+        .visualg-type { color: #ec4899; font-weight: bold; }
+        
+        pre {
+            background-color: #1e293b;
+            color: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            overflow-x: auto;
+            border: 1px solid #334155;
+        }
+
+        .decision-node {
+            border-left: 4px solid #ef4444;
+            background: #fef2f2;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 line-tight">
+
+    <!-- Header / Navbar -->
+    <nav class="bg-red-700 text-white p-4 sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold tracking-tight">Programação & Algoritmos <span class="text-red-200">2026</span></h1>
+            <div class="hidden md:flex space-x-6 text-sm font-medium">
+                <a href="#teoria" class="hover:text-red-200 transition">Teoria</a>
+                <a href="#pratica" class="hover:text-red-200 transition">Prática</a>
+                <a href="#exercicios" class="hover:text-red-200 transition">Exercícios</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="bg-red-600 text-white py-16 px-4 text-center">
+        <div class="container mx-auto max-w-4xl">
+            <span class="bg-red-500 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">Módulo 1: Visualg</span>
+            <h2 class="text-4xl md:text-5xl font-extrabold mt-4 mb-6">Aula 05: Estruturas Condicionais</h2>
+            <p class="text-lg text-red-100 max-w-2xl mx-auto">Dê "cérebro" ao seu programa. Aprenda a criar desvios no fluxo do código para que ele execute diferentes acções dependendo dos dados fornecidos.</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto max-w-5xl px-4 py-12">
+        
+        <!-- Teoria Section -->
+        <section id="teoria" class="mb-20">
+            <div class="flex items-center mb-8">
+                <div class="w-10 h-10 bg-red-100 text-red-600 rounded-lg flex items-center justify-center mr-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+                    </svg>
+                </div>
+                <h3 class="text-3xl font-bold">1. O Fluxo de Decisão</h3>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                    <h4 class="font-bold text-red-600 mb-2 italic">SE (Condicional Simples)</h4>
+                    <p class="text-slate-600 text-sm">Executa um bloco de comandos **apenas se** a condição for verdadeira. Se for falsa, o programa ignora o bloco e segue em frente.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                    <h4 class="font-bold text-red-600 mb-2 italic">SE-SENÃO (Condicional Composta)</h4>
+                    <p class="text-slate-600 text-sm">Oferece dois caminhos: um para quando a condição é **Verdadeira** e outro obrigatório para quando é **Falsa**.</p>
+                </div>
+            </div>
+
+            <div class="mt-8 bg-slate-800 text-slate-200 p-6 rounded-xl code-font text-sm">
+                <p class="text-emerald-400 mb-2">// Estrutura Básica no Visualg:</p>
+                <p><span class="text-blue-400">se</span> (condição) <span class="text-blue-400">entao</span></p>
+                <p class="pl-6 text-slate-400">// comandos caso verdadeiro</p>
+                <p><span class="text-blue-400">senao</span></p>
+                <p class="pl-6 text-slate-400">// comandos caso falso</p>
+                <p><span class="text-blue-400">fimse</span></p>
+            </div>
+        </section>
+
+        <!-- Prática Section -->
+        <section id="pratica" class="mb-20">
+            <div class="flex items-center mb-8">
+                <div class="w-10 h-10 bg-emerald-100 text-emerald-600 rounded-lg flex items-center justify-center mr-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                    </svg>
+                </div>
+                <h3 class="text-3xl font-bold">2. Prática Comentada</h3>
+            </div>
+
+            <div class="space-y-12">
+                <!-- Exemplo A -->
+                <div>
+                    <h4 class="text-xl font-semibold mb-4 flex items-center">
+                        <span class="bg-emerald-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs mr-3">A</span>
+                        Condicional Simples: Verificação de Maioridade
+                    </h4>
+                    <pre class="code-font text-sm leading-relaxed">
+<span class="visualg-keyword">algoritmo</span> <span class="visualg-string">"Verifica_Idade"</span>
+<span class="visualg-keyword">var</span>
+   idade : <span class="visualg-type">inteiro</span>
+<span class="visualg-keyword">inicio</span>
+   <span class="visualg-command">escreva</span>(<span class="visualg-string">"Indique a sua idade: "</span>)
+   <span class="visualg-command">leia</span>(idade)
+   
+   <span class="visualg-comment">// Se a condição for falsa, nada acontece no console</span>
+   <span class="visualg-keyword">se</span> (idade >= 18) <span class="visualg-keyword">entao</span>
+      <span class="visualg-command">escreval</span>(<span class="visualg-string">"Acesso concedido. Bem-vindo ao sistema!"</span>)
+   <span class="visualg-keyword">fimse</span>
+   
+   <span class="visualg-command">escreval</span>(<span class="visualg-string">"Fim do programa."</span>)
+<span class="visualg-keyword">fimalgoritmo</span></pre>
+                </div>
+
+                <!-- Exemplo B -->
+                <div>
+                    <h4 class="text-xl font-semibold mb-4 flex items-center">
+                        <span class="bg-emerald-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs mr-3">B</span>
+                        Condicional Composta: Par ou Ímpar?
+                    </h4>
+                    <pre class="code-font text-sm leading-relaxed">
+<span class="visualg-keyword">algoritmo</span> <span class="visualg-string">"Par_Ou_Impar"</span>
+<span class="visualg-keyword">var</span>
+   num : <span class="visualg-type">inteiro</span>
+<span class="visualg-keyword">inicio</span>
+   <span class="visualg-command">escreva</span>(<span class="visualg-string">"Introduza um número inteiro: "</span>)
+   <span class="visualg-command">leia</span>(num)
+   
+   <span class="visualg-comment">// Usamos o resto da divisão (%) para testar a paridade</span>
+   <span class="visualg-keyword">se</span> (num % 2 = 0) <span class="visualg-keyword">entao</span>
+      <span class="visualg-command">escreval</span>(<span class="visualg-string">"O número inserido é PAR!"</span>)
+   <span class="visualg-keyword">senao</span>
+      <span class="visualg-command">escreval</span>(<span class="visualg-string">"O número inserido é ÍMPAR!"</span>)
+   <span class="visualg-keyword">fimse</span>
+<span class="visualg-keyword">fimalgoritmo</span></pre>
+                </div>
+
+                <!-- Exemplo C -->
+                <div>
+                    <h4 class="text-xl font-semibold mb-4 flex items-center">
+                        <span class="bg-emerald-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs mr-3">C</span>
+                        Sistema de Aprovação Escolar
+                    </h4>
+                    <pre class="code-font text-sm leading-relaxed">
+<span class="visualg-keyword">algoritmo</span> <span class="visualg-string">"Situacao_Aluno"</span>
+<span class="visualg-keyword">var</span>
+   nota : <span class="visualg-type">real</span>
+<span class="visualg-keyword">inicio</span>
+   <span class="visualg-command">escreva</span>(<span class="visualg-string">"Digite a média final do aluno: "</span>)
+   <span class="visualg-command">leia</span>(nota)
+   
+   <span class="visualg-keyword">se</span> (nota >= 7.0) <span class="visualg-keyword">entao</span>
+      <span class="visualg-command">escreval</span>(<span class="visualg-string">"PARABÉNS! O aluno foi aprovado."</span>)
+   <span class="visualg-keyword">senao</span>
+      <span class="visualg-command">escreval</span>(<span class="visualg-string">"ESTUDE MAIS! O aluno foi reprovado."</span>)
+   <span class="visualg-keyword">fimse</span>
+<span class="visualg-keyword">fimalgoritmo</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exercícios Section -->
+        <section id="exercicios" class="mb-20">
+            <div class="flex items-center mb-8">
+                <div class="w-10 h-10 bg-amber-100 text-amber-600 rounded-lg flex items-center justify-center mr-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                    </svg>
+                </div>
+                <h3 class="text-3xl font-bold">3. Exercícios de Fixação</h3>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Cards de Exercícios Detalhados -->
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm decision-node">
+                    <span class="text-red-500 font-bold text-xs uppercase">Ex 01 - Básico</span>
+                    <p class="text-sm mt-2"><strong>Positivo ou Negativo:</strong> Peça um número ao utilizador e informe se ele é positivo (maior ou igual a zero) ou negativo.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm decision-node">
+                    <span class="text-red-500 font-bold text-xs uppercase">Ex 02 - Comparação</span>
+                    <p class="text-sm mt-2"><strong>Maior de Dois:</strong> Receba dois números inteiros. O programa deve exibir qual deles é o maior valor entre os dois informados.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm decision-node">
+                    <span class="text-red-500 font-bold text-xs uppercase">Ex 03 - Segurança</span>
+                    <p class="text-sm mt-2"><strong>Validação de Senha:</strong> Crie uma variável com uma senha definida (ex: "1234"). Peça ao utilizador para digitar a senha. Exiba "Acesso Permitido" ou "Acesso Negado".</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm decision-node">
+                    <span class="text-red-500 font-bold text-xs uppercase">Ex 04 - Aritmética</span>
+                    <p class="text-sm mt-2"><strong>Divisão Segura:</strong> Receba dois números. Se o segundo for diferente de zero, exiba o resultado da divisão. Caso contrário, exiba "Erro: Divisão por zero!".</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm decision-node">
+                    <span class="text-red-500 font-bold text-xs uppercase">Ex 05 - Cotidiano</span>
+                    <p class="text-sm mt-2"><strong>Multa de Trânsito:</strong> Peça a velocidade de um carro. Se for maior que 80km/h, exiba: "Você foi multado!". Se estiver no limite, exiba: "Boa viagem!".</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm decision-node">
+                    <span class="text-red-500 font-bold text-xs uppercase">Ex 06 - Lógica</span>
+                    <p class="text-sm mt-2"><strong>Múltiplo de 3:</strong> Peça um número e informe se ele é múltiplo de 3. (Dica: Use o operador de resto <code>%</code> e verifique se o resultado é 0).</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm decision-node">
+                    <span class="text-red-500 font-bold text-xs uppercase">Ex 07 - Finanças</span>
+                    <p class="text-sm mt-2"><strong>Limite de Crédito:</strong> Peça o salário de uma pessoa e o valor da prestação de um empréstimo. Se a prestação for maior que 30% do salário, diga "Empréstimo negado".</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm decision-node">
+                    <span class="text-red-500 font-bold text-xs uppercase">Ex 08 - Compras</span>
+                    <p class="text-sm mt-2"><strong>Desconto Progressivo:</strong> Peça o valor total de uma compra. Se for maior que 100€, aplique 10% de desconto e mostre o valor final. Caso contrário, mostre o valor sem desconto.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm decision-node">
+                    <span class="text-red-500 font-bold text-xs uppercase">Ex 09 - Desporto</span>
+                    <p class="text-sm mt-2"><strong>Peso Pesado:</strong> Receba o peso de um lutador. Se for maior ou igual a 90kg, exiba "Categoria: Pesado". Caso contrário, exiba "Categoria: Leve".</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-red-600 shadow-md bg-red-50">
+                    <span class="text-red-700 font-bold text-xs uppercase">Ex 10 - Desafio Final</span>
+                    <p class="text-sm mt-2 font-semibold italic">Verificador Completo: Peça um número. O programa deve dizer se ele é PAR e ao mesmo tempo POSITIVO (use o operador 'e' dentro do SE).</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 py-12 px-4 border-t border-slate-800">
+        <div class="container mx-auto text-center">
+            <p class="text-sm mb-4 font-medium uppercase tracking-widest text-slate-500">Módulo de Algoritmos 2026</p>
+            <p class="text-xs italic">"Programar é dar opções ao destino do seu código."</p>
+        </div>
+    </footer>
+
+</body>
+</html>

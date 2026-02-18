@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 07 - innerText vs innerHTML</title>
+    <style>
+        :root {
+            --primary: #8b5cf6;
+            --secondary: #6d28d9;
+            --bg: #f5f3ff;
+            --card: #ffffff;
+            --text: #1e1b4b;
+            --accent: #d946ef;
+            --code-bg: #1e1e1e;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 50px 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 0 0 24px 24px;
+            margin-bottom: 30px;
+        }
+
+        section {
+            background: var(--card);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: var(--primary);
+            border-bottom: 2px solid #ddd6fe;
+            padding-bottom: 10px;
+        }
+
+        /* Playground */
+        .playground {
+            text-align: center;
+            border: 2px solid var(--primary);
+        }
+
+        .display-card {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 20px auto;
+            max-width: 400px;
+            min-height: 150px;
+            transition: 0.3s;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 12px 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        button:hover { background: var(--secondary); transform: scale(1.05); }
+
+        /* Blocos de Código Coloridos */
+        pre {
+            background: var(--code-bg);
+            color: #d4d4d4;
+            padding: 25px;
+            border-radius: 12px;
+            overflow-x: auto;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        .c-comment { color: #6a9955; }
+        .c-kw { color: #569cd6; }
+        .c-tag { color: #569cd6; }
+        .c-attr { color: #9cdcfe; }
+        .c-str { color: #ce9178; }
+        .c-style { color: #e74c3c; font-weight: bold; }
+
+        .tasks li { margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Aula 07: Manipulando Conteúdos</h1>
+    <p>Aprendendo a diferença entre texto puro e estruturas HTML dinâmicas.</p>
+</header>
+
+<div class="container">
+
+    <!-- 1. INTRODUÇÃO -->
+    <section>
+        <h2>1. innerText vs innerHTML</h2>
+        <p>Após selecionar um elemento, podemos alterar o que está dentro dele de duas formas principais:</p>
+        <ul>
+            <li><strong>innerText:</strong> Altera apenas o texto puro. Se escreveres tags, elas aparecem como texto comum.</li>
+            <li><strong>innerHTML:</strong> Interpreta o código HTML. Permite criar novos elementos e estilos dinamicamente.</li>
+        </ul>
+        <p>Basicamente: <code>innerText</code> é para palavras; <code>innerHTML</code> é para componentes e tags.</p>
+    </section>
+
+    <!-- 2. PRÁTICA INTERATIVA -->
+    <section class="playground">
+        <h2>2. Prática: O Transformador de Cards</h2>
+        <p>Observa como o card abaixo muda quando injetamos texto puro ou código HTML.</p>
+        
+        <div id="meu-card" class="display-card">
+            Conteúdo Inicial
+        </div>
+
+        <div class="btn-group">
+            <button onclick="mudarParaTexto()">Usar innerText</button>
+            <button onclick="mudarParaHTML()">Usar innerHTML</button>
+            <button onclick="resetar()">Reiniciar</button>
+        </div>
+    </section>
+
+    <!-- 3. CÓDIGO EXEMPLO COMPLETO -->
+    <section>
+        <h2>3. Código Exemplo (Ficheiro Completo)</h2>
+        <p>Este código abaixo integra as três linguagens. Copia este modelo para entender como o processo funciona:</p>
+        
+        <pre><code><span class="c-tag">&lt;!DOCTYPE html&gt;</span>
+<span class="c-tag">&lt;html</span> <span class="c-attr">lang</span>=<span class="c-str">"pt-pt"</span><span class="c-tag">&gt;</span>
+<span class="c-tag">&lt;body&gt;</span>
+
+    <span class="c-comment">&lt;!-- Estrutura HTML --&gt;</span>
+    <span class="c-tag">&lt;div</span> <span class="c-attr">id</span>=<span class="c-str">"area"</span><span class="c-tag">&gt;</span>Texto Original<span class="c-tag">&lt;/div&gt;</span>
+    <span class="c-tag">&lt;button</span> <span class="c-attr">onclick</span>=<span class="c-str">"atualizar()"</span><span class="c-tag">&gt;</span>Mudar Tudo<span class="c-tag">&lt;/button&gt;</span>
+
+    <span class="c-style">&lt;style&gt;</span>
+        <span class="c-comment">/* CSS: Definimos o visual básico */</span>
+        <span class="c-tag">#area</span> { <span class="c-attr">padding</span>: 20px; <span class="c-attr">border</span>: 1px solid black; }
+        <span class="c-kw">.destaque</span> { <span class="c-attr">color</span>: red; <span class="c-attr">font-weight</span>: bold; }
+    <span class="c-style">&lt;/style&gt;</span>
+
+    <span class="c-style">&lt;script&gt;</span>
+        <span class="c-kw">function</span> <span class="c-tag">atualizar</span>() {
+            <span class="c-comment">// 1. Selecionamos o elemento</span>
+            <span class="c-kw">const</span> elemento = document.getElementById(<span class="c-str">'area'</span>);
+
+            <span class="c-comment">// 2. Usamos innerHTML para injetar uma estrutura nova</span>
+            elemento.innerHTML = <span class="c-str">`
+                &lt;h2 class="destaque"&gt;Novo Título&lt;/h2&gt;
+                &lt;p&gt;Este parágrafo foi criado via JS!&lt;/p&gt;
+            `</span>;
+            
+            <span class="c-comment">// 3. Exemplo de innerText (apenas texto)</span>
+            <span class="c-comment">// elemento.innerText = "Apenas texto aqui";</span>
+        }
+    <span class="c-style">&lt;/script&gt;</span>
+
+<span class="c-tag">&lt;/body&gt;</span>
+<span class="c-tag">&lt;/html&gt;</span></code></pre>
+    </section>
+
+    <!-- 4. ATIVIDADES -->
+    <section style="border-left: 6px solid var(--accent);">
+        <h2>4. Atividades de Fixação</h2>
+        <ul class="tasks">
+            <li><strong>Tarefa 1:</strong> Altera a função <code>mudarParaTexto</code> para que ela mude o texto do card para o teu nome completo.</li>
+            <li><strong>Tarefa 2:</strong> Altera a função <code>mudarParaHTML</code> para inserir uma imagem dentro do card (Usa <code>&lt;img src='...' width='100'&gt;</code>).</li>
+            <li><strong>Tarefa 3:</strong> Cria uma nova função chamada <code>adicionarAlerta</code> que usa <code>innerHTML</code> para inserir uma div com fundo vermelho e o texto "Atenção: Stock Baixo!".</li>
+            <li><strong>Tarefa 4:</strong> Usa <code>innerText</code> para tentar inserir uma tag <code>&lt;button&gt;</code> e observa por que razão ela não se torna num botão clicável no ecrã.</li>
+            <li><strong>Tarefa 5:</strong> Cria um botão "Limpar" que define o <code>innerHTML</code> do card como uma string vazia (<code>""</code>).</li>
+        </ul>
+    </section>
+
+</div>
+
+<script>
+    // Lógica da Aula 07
+    
+    const mudarParaTexto = () => {
+        const card = document.getElementById('meu-card');
+        // O innerText ignora tags HTML e mostra tudo como texto literal
+        card.innerText = "<strong>Este texto NÃO é negrito no ecrã</strong>";
+        card.style.color = "var(--text)";
+    };
+
+    const mudarParaHTML = () => {
+        const card = document.getElementById('meu-card');
+        // O innerHTML interpreta as tags e cria novos elementos
+        card.innerHTML = `
+            <h3 style="color: var(--primary)">Sucesso!</h3>
+            <p>Isto é um <strong>HTML real</strong> injetado via JS.</p>
+            <button style="background: var(--accent); font-size: 10px;">Botão Injetado</button>
+        `;
+    };
+
+    const resetar = () => {
+        const card = document.getElementById('meu-card');
+        card.innerHTML = "Conteúdo Inicial";
+        card.style.color = "var(--text)";
+    };
+</script>
+
+</body>
+</html>

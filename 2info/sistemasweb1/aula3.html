@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistemas Web 1 - Aula 03: Tipos de Dados</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;600;700&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; }
+        
+        pre, code { 
+            font-family: 'Fira Code', monospace; 
+            font-size: 14px; 
+            line-height: 1.5;
+        }
+        
+        .code-container {
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            user-select: text;
+        }
+
+        .comment { color: #6a9955; font-style: italic; }
+        .keyword { color: #569cd6; }
+        .string { color: #ce9178; }
+        .function { color: #dcdcaa; }
+        .number { color: #b5cea8; }
+
+        #console-ui {
+            background-color: #0d1117;
+            border: 1px solid #30363d;
+            height: 380px;
+            overflow-y: auto;
+            font-size: 13px;
+        }
+
+        #console-ui::-webkit-scrollbar { width: 8px; }
+        #console-ui::-webkit-scrollbar-thumb { background: #30363d; border-radius: 4px; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+
+    <header class="bg-blue-950 text-white shadow-2xl border-b-4 border-blue-500">
+        <div class="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div>
+                <h1 class="text-4xl font-black tracking-tighter text-white uppercase">SISTEMAS WEB 1 <span class="text-blue-400">/ 2026</span></h1>
+                <p class="text-blue-200 mt-2 text-lg italic font-light uppercase tracking-widest">Aula 03: Tipos de Dados (Strings, Numbers e Booleans)</p>
+            </div>
+            <div class="bg-blue-900 border border-blue-700 px-8 py-4 rounded-2xl shadow-inner text-center text-white">
+                <p class="text-xs text-blue-300 font-bold uppercase">Módulo 01</p>
+                <div class="w-32 h-2 bg-blue-950 rounded-full mt-2 overflow-hidden">
+                    <div class="w-full h-full bg-blue-400"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto p-6 grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <!-- COLUNA DE CONTEÚDO (TEORIA E EXERCÍCIOS) -->
+        <div class="lg:col-span-4 space-y-6">
+            <section class="bg-white p-8 rounded-3xl shadow-sm border border-slate-200">
+                <h2 class="text-xl font-bold text-slate-800 mb-6 flex items-center gap-2 border-b-2 border-slate-50 pb-2">
+                    <span class="bg-blue-100 p-2 rounded-lg">🏷️</span> Definições
+                </h2>
+                <div class="space-y-4 text-sm text-slate-600">
+                    <p class="bg-slate-50 p-3 rounded-xl"><strong>String (Texto):</strong> Conjunto de caracteres entre aspas ("" ou ''). Ex: "Olá", "123" (aqui 123 é texto).</p>
+                    <p class="bg-slate-50 p-3 rounded-xl"><strong>Number (Número):</strong> Valores numéricos (inteiros ou decimais). Não usam aspas. Decimais usam ponto (.).</p>
+                    <p class="bg-slate-50 p-3 rounded-xl"><strong>Boolean (Lógico):</strong> Só aceita dois valores: <code>true</code> (verdadeiro) ou <code>false</code> (falso). Essencial para decisões.</p>
+                </div>
+            </section>
+
+            <section class="bg-white p-8 rounded-3xl shadow-sm border border-slate-200">
+                <h2 class="text-xl font-bold text-orange-600 mb-6 flex items-center gap-2 border-b-2 border-orange-50 pb-2">
+                    <span class="bg-orange-100 p-2 rounded-lg">🎯</span> Atividades Práticas
+                </h2>
+                
+                <div class="space-y-4">
+                    <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200">
+                        <h4 class="text-[10px] font-black text-blue-600 uppercase mb-1 italic tracking-widest leading-none">Exercício 01</h4>
+                        <p class="text-xs text-slate-700 leading-tight">Crie três variáveis (uma string, um number e um boolean) sobre um produto e exiba-as.</p>
+                    </div>
+
+                    <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200">
+                        <h4 class="text-[10px] font-black text-blue-600 uppercase mb-1 italic tracking-widest leading-none">Exercício 02</h4>
+                        <p class="text-xs text-slate-700 leading-tight">Use o comando <code>typeof</code> para exibir no console o tipo de dado de uma variável que contenha o valor 25.5.</p>
+                    </div>
+
+                    <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200">
+                        <h4 class="text-[10px] font-black text-blue-600 uppercase mb-1 italic tracking-widest leading-none">Exercício 03</h4>
+                        <p class="text-xs text-slate-700 leading-tight">Declare uma variável com o seu nome e outra com o apelido. Concatene as duas num log usando o sinal de +.</p>
+                    </div>
+
+                    <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200">
+                        <h4 class="text-[10px] font-black text-orange-600 uppercase mb-1 italic tracking-widest leading-none">Exercício 04</h4>
+                        <p class="text-xs text-slate-700 leading-tight">Crie uma variável <code>estaLogado</code> como boolean. Exiba uma frase no console juntando um texto com esse boolean.</p>
+                    </div>
+
+                    <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200">
+                        <h4 class="text-[10px] font-black text-orange-600 uppercase mb-1 italic tracking-widest leading-none">Exercício 05</h4>
+                        <p class="text-xs text-slate-700 leading-tight">Declare <code>n1 = "10"</code> (string) e <code>n2 = 10</code> (number). Some os dois e veja o que acontece no console.</p>
+                    </div>
+
+                    <div class="bg-red-50 p-4 rounded-2xl border border-red-100 text-white">
+                        <h4 class="text-[10px] font-black text-red-600 uppercase mb-1 italic tracking-widest leading-none">Exercício 06 (Desafio)</h4>
+                        <p class="text-xs text-red-800 leading-tight font-medium italic text-white">Crie um "Bilhete de Identidade" virtual: guarde Nome, Idade e Estudante (boolean). Use <code>typeof</code> para confirmar cada tipo no console.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- COLUNA DE CÓDIGO (LIVRE PARA CÓPIA) -->
+        <div class="lg:col-span-8 space-y-6">
+            
+            <section class="bg-white p-1 rounded-3xl shadow-xl border border-slate-200 overflow-hidden">
+                <div class="bg-slate-900 px-8 py-4 flex justify-between items-center border-b border-white/10">
+                    <h2 class="text-sm font-bold text-white uppercase tracking-widest italic text-white">Exemplo de Código: Tipos de Dados</h2>
+                    <div class="flex gap-1.5 text-xs text-slate-500 font-mono">
+                        <span>Ficheiro: aula03.js</span>
+                    </div>
+                </div>
+                
+                <div id="code-area" class="p-8 code-container overflow-x-auto">
+<pre><code><span class="comment">// --- 1. STRING (TEXTO) ---</span>
+<span class="keyword">const</span> <span class="function">escola</span> = <span class="string">"Sistemas Web 1"</span>;
+<span class="function">console</span>.log(<span class="string">"Tipo da variável escola:"</span>, <span class="keyword">typeof</span> <span class="function">escola</span>);
+
+<span class="comment">// --- 2. NUMBER (NÚMEROS) ---</span>
+<span class="keyword">let</span> <span class="function">notaFinal</span> = <span class="number">18.5</span>; <span class="comment">// Decimais usam ponto</span>
+<span class="keyword">let</span> <span class="function">ano</span> = <span class="number">2026</span>;
+<span class="function">console</span>.log(<span class="string">"Tipo da notaFinal:"</span>, <span class="keyword">typeof</span> <span class="function">notaFinal</span>);
+
+<span class="comment">// --- 3. BOOLEAN (VERDADEIRO / FALSO) ---</span>
+<span class="keyword">let</span> <span class="function">aulaAtiva</span> = <span class="keyword">true</span>;
+<span class="keyword">let</span> <span class="function">provaRealizada</span> = <span class="keyword">false</span>;
+<span class="function">console</span>.log(<span class="string">"O aluno está ativo?"</span>, <span class="function">aulaAtiva</span>);
+
+<span class="comment">// --- 4. CONCATENAÇÃO (JUNTAR TIPOS) ---</span>
+<span class="comment">// Quando juntamos String com Number, o resultado vira String</span>
+<span class="keyword">let</span> <span class="function">mensagem</span> = <span class="string">"A nota é: "</span> + <span class="function">notaFinal</span>;
+<span class="function">console</span>.log(<span class="function">mensagem</span>);
+
+<span class="comment">// --- 5. CASOS ESPECIAIS (NULL E UNDEFINED) ---</span>
+<span class="keyword">let</span> <span class="function">vazio</span> = <span class="keyword">null</span>; <span class="comment">// Valor nulo proposital</span>
+<span class="keyword">let</span> <span class="function">naoDefinido</span>;   <span class="comment">// Variável criada mas sem valor</span>
+
+<span class="function">console</span>.log(<span class="string">"Valor de naoDefinido:"</span>, <span class="function">naoDefinido</span>);
+</code></pre>
+                </div>
+            </section>
+
+            <section class="bg-white p-8 rounded-3xl shadow-xl border border-slate-200">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-sm font-black text-slate-400 uppercase tracking-widest">Inspecção de Dados (Live View)</h2>
+                    <span class="flex h-3 w-3 relative">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-blue-500"></span>
+                    </span>
+                </div>
+                <div id="console-ui" class="rounded-2xl p-6 font-mono shadow-inner space-y-3">
+                    <!-- Gerado automaticamente via JS -->
+                </div>
+                <div class="mt-6 flex flex-col md:flex-row items-center justify-between gap-4">
+                    <div class="flex items-center gap-2 text-[10px] text-slate-400 font-bold uppercase">
+                        <span class="w-2 h-2 bg-blue-500 rounded-full"></span>
+                        Analisador de Tipos Ativo
+                    </div>
+                    <button onclick="window.location.reload()" class="w-full md:w-auto bg-blue-900 hover:bg-blue-800 text-white text-[10px] px-6 py-3 rounded-xl transition-all font-black uppercase tracking-widest shadow-lg shadow-blue-200">
+                        REINICIAR ANÁLISE
+                    </button>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="mt-12 py-10 border-t border-slate-200 text-center text-slate-400 text-white">
+        <p class="italic text-sm font-medium">Sistemas Web 1 - A dominar os dados fundamentais.</p>
+    </footer>
+
+    <script>
+        const consoleUI = document.getElementById('console-ui');
+
+        function printToUI(msg, type = 'log') {
+            const line = document.createElement('div');
+            line.className = 'border-b border-gray-800/50 pb-2 transition-all duration-500 opacity-0 transform translate-x-2';
+            
+            let colorClass = 'text-blue-400';
+            let icon = '🏷️';
+
+            if (type === 'type') { colorClass = 'text-purple-400'; icon = '🔍'; }
+            if (type === 'val') { colorClass = 'text-emerald-400'; icon = '💎'; }
+
+            line.innerHTML = `<span class="${colorClass} font-bold mr-3">${icon}</span> <span class="text-slate-300 font-medium">${msg}</span>`;
+            consoleUI.appendChild(line);
+            
+            setTimeout(() => {
+                line.classList.remove('opacity-0', 'translate-x-2');
+            }, 50);
+
+            consoleUI.scrollTop = consoleUI.scrollHeight;
+        }
+
+        // Execução simulada da Aula 03
+        const steps = [
+            { m: "Analisando 'Sistemas Web': Tipo = String", t: "type" },
+            { m: "Analisando 2026: Tipo = Number", t: "type" },
+            { m: "Analisando true: Tipo = Boolean", t: "type" },
+            { m: "Concatenação: 'Aula ' + 3 = 'Aula 3'", t: "val" },
+            { m: "Atenção: '10' + 10 resulta em '1010' (Concatenação)", t: "val" },
+            { m: "Variável sem valor detectada: Undefined", t: "type" }
+        ];
+
+        steps.forEach((step, index) => {
+            setTimeout(() => {
+                printToUI(step.m, step.t);
+            }, 700 * (index + 1));
+        });
+    </script>
+</body>
+</html>

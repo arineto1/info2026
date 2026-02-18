@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 08 - Estilização Dinâmica com JS</title>
+    <style>
+        :root {
+            --primary: #10b981;
+            --secondary: #059669;
+            --bg: #f0fdf4;
+            --card: #ffffff;
+            --text: #064e3b;
+            --code-bg: #1e1e1e;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 50px 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 0 0 24px 24px;
+            margin-bottom: 30px;
+        }
+
+        section {
+            background: var(--card);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: var(--primary);
+            border-bottom: 2px solid #d1fae5;
+            padding-bottom: 10px;
+        }
+
+        /* Playground */
+        .playground {
+            text-align: center;
+            border: 2px solid var(--primary);
+        }
+
+        #caixa-amostra {
+            width: 200px;
+            height: 200px;
+            background-color: #cbd5e1;
+            margin: 20px auto;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            transition: all 0.4s ease;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 12px 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        button:hover { background: var(--secondary); transform: translateY(-2px); }
+
+        /* Blocos de Código Coloridos */
+        pre {
+            background: var(--code-bg);
+            color: #9cdcfe;
+            padding: 25px;
+            border-radius: 12px;
+            overflow-x: auto;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        .c-comment { color: #6a9955; }
+        .c-kw { color: #c586c0; }
+        .c-tag { color: #569cd6; }
+        .c-attr { color: #9cdcfe; }
+        .c-str { color: #ce9178; }
+        .c-style { color: #e74c3c; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Aula 08: Estilização em Tempo Real</h1>
+    <p>Dominando a propriedade .style para criar interfaces vivas.</p>
+</header>
+
+<div class="container">
+
+    <!-- 1. INTRODUÇÃO -->
+    <section>
+        <h2>1. A Propriedade .style</h2>
+        <p>Através do JavaScript, podemos aceder a qualquer propriedade CSS de um elemento. A regra principal é a conversão de nomes para <strong>camelCase</strong>:</p>
+        <ul>
+            <li><strong>CSS:</strong> <code>background-color</code> &nbsp; ➜ &nbsp; <strong>JS:</strong> <code>backgroundColor</code></li>
+            <li><strong>CSS:</strong> <code>font-size</code> &nbsp; ➜ &nbsp; <strong>JS:</strong> <code>fontSize</code></li>
+            <li><strong>CSS:</strong> <code>border-radius</code> &nbsp; ➜ &nbsp; <strong>JS:</strong> <code>borderRadius</code></li>
+        </ul>
+        <p>Os valores devem ser sempre <strong>Strings</strong> (entre aspas) e incluir unidades quando necessário (ex: "20px").</p>
+    </section>
+
+    <!-- 2. PRÁTICA INTERATIVA -->
+    <section class="playground">
+        <h2>2. Prática: O Configurador Visual</h2>
+        <p>Clica nos botões para modificar as propriedades CSS da caixa abaixo usando JavaScript.</p>
+        
+        <div id="caixa-amostra">OBJETO</div>
+
+        <div class="btn-group">
+            <button onclick="mudarCor()">Mudar Cor</button>
+            <button onclick="arredondar()">Arredondar</button>
+            <button onclick="aumentar()">Aumentar</button>
+            <button onclick="resetar()">Resetar Estilos</button>
+        </div>
+    </section>
+
+    <!-- 3. CÓDIGO EXEMPLO COMPLETO -->
+    <section>
+        <h2>3. Código Exemplo (Ficheiro Completo)</h2>
+        <p>Abaixo está o exemplo completo integrando HTML, CSS e JS. Copia este modelo para testar no teu computador:</p>
+        
+        <pre><code><span class="c-tag">&lt;!DOCTYPE html&gt;</span>
+<span class="c-tag">&lt;html</span> <span class="c-attr">lang</span>=<span class="c-str">"pt-pt"</span><span class="c-tag">&gt;</span>
+<span class="c-tag">&lt;head&gt;</span>
+    <span class="c-style">&lt;style&gt;</span>
+        <span class="c-comment">/* CSS: Definimos a base visual */</span>
+        <span class="c-tag">#caixa</span> {
+            <span class="c-attr">width</span>: 100px;
+            <span class="c-attr">height</span>: 100px;
+            <span class="c-attr">background-color</span>: grey;
+            <span class="c-attr">transition</span>: 0.5s; <span class="c-comment">/* Suaviza a mudança */</span>
+        }
+    <span class="c-style">&lt;/style&gt;</span>
+<span class="c-tag">&lt;/head&gt;</span>
+<span class="c-tag">&lt;body&gt;</span>
+
+    <span class="c-tag">&lt;div</span> <span class="c-attr">id</span>=<span class="c-str">"caixa"</span><span class="c-tag">&gt;</span><span class="c-tag">&lt;/div&gt;</span>
+    <span class="c-tag">&lt;button</span> <span class="c-attr">onclick</span>=<span class="c-str">"aplicarEstilo()"</span><span class="c-tag">&gt;</span>Mudar Visual<span class="c-tag">&lt;/button&gt;</span>
+
+    <span class="c-style">&lt;script&gt;</span>
+        <span class="c-kw">function</span> <span class="c-tag">aplicarEstilo</span>() {
+            <span class="c-comment">// 1. Selecionamos o elemento</span>
+            <span class="c-kw">const</span> el = document.getElementById(<span class="c-str">'caixa'</span>);
+            
+            <span class="c-comment">// 2. Aplicamos estilos diretamente (Nota o camelCase)</span>
+            el.style.backgroundColor = <span class="c-str">"blue"</span>;
+            el.style.width = <span class="c-str">"200px"</span>;
+            el.style.borderRadius = <span class="c-str">"20px"</span>;
+            el.style.border = <span class="c-str">"5px solid orange"</span>;
+        }
+    <span class="c-style">&lt;/script&gt;</span>
+
+<span class="c-tag">&lt;/body&gt;</span>
+<span class="c-tag">&lt;/html&gt;</span></code></pre>
+    </section>
+
+    <!-- 4. ATIVIDADES -->
+    <section style="border-left: 6px solid var(--primary);">
+        <h2>4. Atividades de Fixação</h2>
+        <ul class="tasks">
+            <li><strong>Tarefa 1:</strong> Altera a função <code>mudarCor</code> para que ela também mude a cor do texto para branco (<code>white</code>).</li>
+            <li><strong>Tarefa 2:</strong> Cria uma função que mude a borda da caixa para <code>5px solid black</code>.</li>
+            <li><strong>Tarefa 3:</strong> Cria um botão "Esconder" que mude o <code>display</code> da caixa para <code>none</code> e outro botão "Mostrar" para <code>flex</code>.</li>
+            <li><strong>Tarefa 4:</strong> Adiciona um efeito de sombra à caixa via JS usando a propriedade <code>boxShadow</code>.</li>
+            <li><strong>Tarefa 5:</strong> Cria uma função que mude o tamanho do texto dentro da caixa usando <code>fontSize</code>.</li>
+        </ul>
+    </section>
+
+</div>
+
+<script>
+    const caixa = document.getElementById('caixa-amostra');
+
+    const mudarCor = () => {
+        caixa.style.backgroundColor = "#ef4444";
+        caixa.style.color = "white";
+    };
+
+    const arredondar = () => {
+        caixa.style.borderRadius = "50%";
+    };
+
+    const aumentar = () => {
+        caixa.style.width = "250px";
+        caixa.style.height = "250px";
+    };
+
+    const resetar = () => {
+        caixa.style.backgroundColor = "#cbd5e1";
+        caixa.style.color = "var(--text)";
+        caixa.style.borderRadius = "8px";
+        caixa.style.width = "200px";
+        caixa.style.height = "200px";
+        caixa.style.display = "flex";
+        caixa.style.border = "none";
+        caixa.style.boxShadow = "none";
+    };
+</script>
+
+</body>
+</html>

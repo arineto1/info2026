@@ -1,0 +1,226 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 04: Entrada de Dados (Input)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        code, pre { font-family: 'Fira Code', monospace; }
+        
+        /* Tema Corporativo Neutro (Slate/Indigo) */
+        .gradient-bg { background: linear-gradient(135deg, #312e81 0%, #1e1b4b 100%); }
+        .code-window { background: #1e1b4b; border-radius: 8px; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); border: 1px solid #4338ca; }
+        .terminal-header { background: #0f172a; padding: 10px; display: flex; align-items: center; gap: 6px; border-bottom: 1px solid #312e81; }
+        .dot { width: 10px; height: 10px; border-radius: 50%; }
+        
+        /* Syntax Highlighting */
+        .python-keyword { color: #c084fc; font-weight: bold; } 
+        .python-string { color: #4ade80; } 
+        .python-comment { color: #94a3b8; font-style: italic; }
+        .python-function { color: #60a5fa; } 
+        .python-number { color: #facc15; } 
+        .python-type { color: #f472b6; }
+        
+        .card-hover { transition: all 0.2s; }
+        .card-hover:hover { transform: translateY(-2px); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
+
+        /* Estilo Específico Spider-Verse para Exercícios */
+        .spider-header { border-left: 4px solid #ef4444; }
+        .spider-card { border: 1px solid #e2e8f0; }
+        .spider-card:hover { border-color: #ef4444; background-color: #fef2f2; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased">
+
+    <!-- Header Neutro -->
+    <header class="gradient-bg text-white py-12 px-6 shadow-md">
+        <div class="max-w-4xl mx-auto">
+            <div class="flex flex-col md:flex-row items-center gap-3 mb-4">
+                <span class="bg-indigo-500 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest border border-indigo-400">Módulo 1</span>
+                <span class="text-indigo-200 font-medium">Desenvolvimento de Sistemas</span>
+            </div>
+            <h1 class="text-4xl font-bold mb-3 tracking-tight">Aula 04: Entrada de Dados e Casting</h1>
+            <p class="text-lg text-indigo-100 max-w-2xl">Torne seus programas interativos. Aprenda a capturar informações do teclado e converter tipos de dados corretamente.</p>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-6 py-12 space-y-16">
+        
+        <!-- Section 1: Definitions (Técnico) -->
+        <section id="definitions" class="space-y-6">
+            <div class="flex items-center gap-3 border-b border-slate-200 pb-2">
+                <div class="p-2 bg-indigo-100 text-indigo-700 rounded-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-800">1. Conceitos de Interatividade</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="card-hover bg-white p-5 rounded-xl border border-slate-200">
+                    <h3 class="font-bold text-slate-800 mb-2 flex items-center gap-2">
+                        <code class="bg-slate-100 text-indigo-600 px-2 rounded">input()</code>
+                        <span>A Função de Entrada</span>
+                    </h3>
+                    <p class="text-sm text-slate-600">
+                        O comando que "pausa" o programa e espera o utilizador digitar algo e apertar ENTER. 
+                        <br><strong class="text-red-500">Atenção:</strong> O <code>input</code> sempre devolve o que foi digitado como <strong>Texto (String)</strong>, mesmo que sejam números.
+                    </p>
+                </div>
+                <div class="card-hover bg-white p-5 rounded-xl border border-slate-200">
+                    <h3 class="font-bold text-slate-800 mb-2 flex items-center gap-2">
+                        <code class="bg-slate-100 text-indigo-600 px-2 rounded">int() float()</code>
+                        <span>Casting (Conversão)</span>
+                    </h3>
+                    <p class="text-sm text-slate-600">
+                        Como o <code>input</code> retorna texto, não podemos fazer matemática direta ("10" + "10" vira "1010").
+                        Precisamos converter manualmente:
+                        <ul class="list-disc list-inside mt-2 text-xs">
+                            <li><code>int()</code>: Converte para Inteiro.</li>
+                            <li><code>float()</code>: Converte para Decimal.</li>
+                        </ul>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Professional Code Example -->
+        <section id="practice" class="space-y-6">
+            <div class="flex items-center gap-3 border-b border-slate-200 pb-2">
+                <div class="p-2 bg-emerald-100 text-emerald-700 rounded-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-800">2. Exemplo Prático: Formulário RH</h2>
+                <span class="text-xs bg-slate-100 px-2 py-1 rounded text-slate-500 ml-auto">user_data.py</span>
+            </div>
+            
+            <p class="text-sm text-slate-600">Este script simula um cadastro simples, demonstrando o erro comum de não converter números e a solução correta.</p>
+
+            <div class="code-window">
+                <div class="terminal-header">
+                    <div class="dot bg-red-500"></div>
+                    <div class="dot bg-yellow-500"></div>
+                    <div class="dot bg-green-500"></div>
+                </div>
+                <div class="p-6 text-sm leading-relaxed overflow-x-auto text-slate-300 font-mono">
+<pre><code><span class="python-comment"># --- CADASTRO DE FUNCIONÁRIO (Entrada de Dados) ---</span>
+
+<span class="python-function">print</span>(<span class="python-string">"--- SISTEMA DE RH v1.0 ---"</span>)
+
+<span class="python-comment"># 1. ENTRADA DE TEXTO (Padrão)</span>
+<span class="python-comment"># O cursor ficará esperando na mesma linha devido ao espaço no final da string</span>
+<span class="python-keyword">nome</span> = <span class="python-function">input</span>(<span class="python-string">"Digite o nome completo: "</span>)
+
+<span class="python-comment"># 2. ENTRADA DE NÚMEROS (CASTING)</span>
+<span class="python-comment"># Erro comum: idade = input("Idade: ") -> Isso gera erro se tentarmos somar depois</span>
+<span class="python-comment"># Forma correta: Envolver o input() com int() ou float()</span>
+
+<span class="python-keyword">idade</span> = <span class="python-function">int</span>(<span class="python-function">input</span>(<span class="python-string">"Digite a idade: "</span>))
+<span class="python-keyword">salario_atual</span> = <span class="python-function">float</span>(<span class="python-function">input</span>(<span class="python-string">"Digite o salário atual: "</span>))
+
+<span class="python-comment"># 3. PROCESSAMENTO DE DADOS</span>
+<span class="python-comment"># Agora podemos fazer matemática porque convertemos os tipos acima</span>
+<span class="python-keyword">ano_aposentadoria</span> = <span class="python-number">2026</span> <span class="python-keyword">+</span> (<span class="python-number">65</span> <span class="python-keyword">-</span> <span class="python-keyword">idade</span>)
+<span class="python-keyword">novo_salario</span> = <span class="python-keyword">salario_atual</span> <span class="python-keyword">*</span> <span class="python-number">1.10</span>  <span class="python-comment"># Aumento de 10%</span>
+
+<span class="python-comment"># 4. SAÍDA FORMATADA (F-Strings)</span>
+<span class="python-comment"># O 'f' antes das aspas permite colocar variáveis dentro de {chaves}</span>
+<span class="python-function">print</span>(<span class="python-string">"\n--- FICHA GERADA ---"</span>)
+<span class="python-function">print</span>(<span class="python-string">f"Funcionário: {nome}"</span>)
+<span class="python-function">print</span>(<span class="python-string">f"Idade registada: {idade} anos"</span>)
+<span class="python-function">print</span>(<span class="python-string">f"Ano estimado de reforma: {ano_aposentadoria}"</span>)
+<span class="python-function">print</span>(<span class="python-string">f"Salário projetado: R$ {novo_salario:.2f}"</span>) 
+<span class="python-comment"># O :.2f formata para 2 casas decimais</span></code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Thematic Exercises (Spider-Verse) -->
+        <section id="exercises" class="space-y-8">
+            <div class="flex items-center gap-3 border-b border-slate-200 pb-2">
+                <div class="p-2 bg-red-100 text-red-700 rounded-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="m4.93 4.93 4.24 4.24"></path><path d="m14.83 9.17 4.24-4.24"></path><path d="m14.83 14.83 4.24 4.24"></path><path d="m9.17 14.83-4.24 4.24"></path><circle cx="12" cy="12" r="4"></circle></svg>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-800">3. Missões no Aranhaverso</h2>
+            </div>
+            
+            <p class="text-slate-600 mb-4 bg-red-50 p-4 rounded-lg border border-red-200 text-sm italic">
+                <strong>Tema: Spider-Man</strong> - Utilize <code>input()</code> para coletar dados das variantes aranha e <code>int()/float()</code> para calibrar os lançadores de teia.
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Fáceis -->
+                <div class="space-y-4">
+                    <h3 class="text-xs font-bold uppercase tracking-widest text-slate-500">Nível: Fácil (Amigável Vizinhança)</h3>
+                    <div class="bg-white p-5 rounded-xl shadow-sm spider-card card-hover spider-header">
+                        <span class="text-xs font-bold text-red-600 mb-1 block">MISSÃO 01: IDENTIDADE</span>
+                        <p class="text-sm text-slate-800">Crie um programa que pergunte: <code>"Qual o seu nome de Aranha?"</code> e <code>"De qual Terra você é?"</code> (Ex: Terra-616). No final, imprima uma mensagem de boas-vindas à Sociedade Aranha.</p>
+                    </div>
+                    <div class="bg-white p-5 rounded-xl shadow-sm spider-card card-hover spider-header">
+                        <span class="text-xs font-bold text-red-600 mb-1 block">MISSÃO 02: ANO DA MORDIDA</span>
+                        <p class="text-sm text-slate-800">Pergunte ao utilizador: <code>"Em que ano você foi picado?"</code> (Converta para <strong>int</strong>). Calcule há quantos anos ele é o Homem-Aranha (Use o ano atual 2026) e exiba o resultado.</p>
+                    </div>
+                    <div class="bg-white p-5 rounded-xl shadow-sm spider-card card-hover spider-header">
+                        <span class="text-xs font-bold text-red-600 mb-1 block">MISSÃO 03: MULTIVERSO</span>
+                        <p class="text-sm text-slate-800">Pergunte a idade de Miles Morales e a idade de Peter B. Parker. Some as duas idades e exiba: <code>"Juntos vocês têm X anos de experiência"</code>.</p>
+                    </div>
+                </div>
+
+                <!-- Médios -->
+                <div class="space-y-4">
+                    <h3 class="text-xs font-bold uppercase tracking-widest text-slate-500">Nível: Médio (Spider-Society)</h3>
+                    <div class="bg-white p-5 rounded-xl shadow-sm spider-card card-hover border-l-4 border-blue-500">
+                        <span class="text-xs font-bold text-blue-600 mb-1 block">MISSÃO 04: LANÇADOR DE TEIA</span>
+                        <p class="text-sm text-slate-800">
+                            Crie uma calculadora de fluido. Pergunte:
+                            <br>1. <code>"Capacidade do cartucho (ml):"</code> (float)
+                            <br>2. <code>"Gasto por balançada (ml):"</code> (float)
+                            <br>Calcule quantas vezes o Aranha pode se balançar antes de acabar a teia (Capacidade / Gasto).
+                        </p>
+                    </div>
+                    <div class="bg-white p-5 rounded-xl shadow-sm spider-card card-hover border-l-4 border-blue-500">
+                        <span class="text-xs font-bold text-blue-600 mb-1 block">MISSÃO 05: ESTABILIDADE MOLECULAR</span>
+                        <p class="text-sm text-slate-800">
+                            Pergunte ao utilizador: <code>"Nível de Glitch atual (0-100):"</code>. 
+                            Converta para inteiro.
+                            Subtraia esse valor de 100 para descobrir a <strong>Estabilidade Atual</strong> e exiba na tela.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Desafio -->
+            <div class="bg-slate-900 p-6 rounded-xl border border-red-900 shadow-lg text-slate-300 relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-4 opacity-20 text-red-600 font-black text-6xl">2099</div>
+                <div class="relative z-10">
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="text-red-500 text-xl">🕷️</span>
+                        <h3 class="font-bold text-white">Desafio: Cadastro do Miguel O'Hara</h3>
+                    </div>
+                    <p class="text-sm leading-relaxed mb-4">
+                        Você precisa criar um sistema de cadastro para a Elite da Sociedade Aranha. O programa deve pedir:
+                    </p>
+                    <ul class="list-disc list-inside text-xs space-y-2 mb-4 text-slate-400 font-mono">
+                        <li>Nome do Herói (input normal)</li>
+                        <li>Idade (input convertido para int)</li>
+                        <li>Número de Vilões capturados (input convertido para int)</li>
+                    </ul>
+                    <p class="text-sm leading-relaxed mb-4">
+                        <strong>Cálculo Final:</strong> O "Score de Herói" é calculado multiplicando os <code>Vilões</code> pela <code>Idade</code>.
+                        <br>No final, exiba uma "Ficha de Agente" formatada bonita com todos os dados e o Score calculado.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-100 py-8 px-6 text-center border-t border-slate-200">
+        <p class="text-xs text-slate-500">Desenvolvimento de Sistemas - Material Didático 2026</p>
+    </footer>
+
+</body>
+</html>

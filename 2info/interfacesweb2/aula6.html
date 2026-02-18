@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 06 - Selecionando o DOM</title>
+    <style>
+        :root {
+            --primary: #0ea5e9;
+            --secondary: #0284c7;
+            --bg: #f0f9ff;
+            --card: #ffffff;
+            --text: #0c4a6e;
+            --code-bg: #1e1e1e;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 50px 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 0 0 24px 24px;
+            margin-bottom: 30px;
+        }
+
+        section {
+            background: var(--card);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: var(--primary);
+            border-bottom: 2px solid #e0f2fe;
+            padding-bottom: 10px;
+        }
+
+        /* Playground */
+        .playground {
+            text-align: center;
+            border: 2px solid var(--primary);
+        }
+
+        .element-box {
+            padding: 20px;
+            margin: 10px;
+            border: 2px solid #cbd5e1;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .minha-classe {
+            background-color: #f8fafc;
+            color: #64748b;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 12px 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        button:hover { background: var(--secondary); transform: translateY(-2px); }
+
+        /* Code Block */
+        pre {
+            background: var(--code-bg);
+            color: #9cdcfe;
+            padding: 25px;
+            border-radius: 12px;
+            overflow-x: auto;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        .c-comment { color: #6a9955; }
+        .c-kw { color: #c586c0; }
+        .c-sel { color: #dcdcaa; }
+        .c-str { color: #ce9178; }
+
+        .tasks li { margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Aula 06: O DOM e a Seleção de Elementos</h1>
+    <p>Como o JavaScript encontra o que precisa no HTML.</p>
+</header>
+
+<div class="container">
+
+    <!-- 1. INTRODUÇÃO -->
+    <section>
+        <h2>1. O que é o DOM?</h2>
+        <p>O <strong>DOM (Document Object Model)</strong> é uma representação da sua página HTML como se fosse uma árvore de objetos. Cada tag (h1, div, p) é um "nó" que o JavaScript pode agarrar e modificar.</p>
+        
+        <p>Existem duas formas principais de selecionar elementos hoje em dia:</p>
+        <ul>
+            <li><strong>getElementById:</strong> Busca um elemento pelo seu ID único. É muito rápido.</li>
+            <li><strong>querySelector:</strong> O seletor moderno. Usa a mesma sintaxe do CSS ( .classe, #id, tag ).</li>
+        </ul>
+    </section>
+
+    <!-- 2. PRÁTICA INTERATIVA -->
+    <section class="playground">
+        <h2>2. Prática: O Radar de Elementos</h2>
+        <p>Clique nos botões para ver o JavaScript localizar os elementos abaixo.</p>
+        
+        <div id="item-unico" class="element-box">
+            Elemento com <strong>ID: "item-unico"</strong>
+        </div>
+
+        <div class="element-box minha-classe">
+            Elemento com <strong>Classe: "minha-classe"</strong>
+        </div>
+
+        <div class="btn-group">
+            <button onclick="selecionarPorId()">Achar por ID</button>
+            <button onclick="selecionarPorClasse()">Achar por Classe</button>
+            <button onclick="resetar()">Limpar Seleção</button>
+        </div>
+    </section>
+
+    <!-- 3. CÓDIGO EXEMPLO -->
+    <section>
+        <h2>3. Código Exemplo (Seleção Completa)</h2>
+        <p>Estude como as variáveis guardam a referência do elemento HTML:</p>
+        
+        <pre><code><span class="c-comment">&lt;!-- Estrutura HTML --&gt;</span>
+<span class="c-kw">&lt;h1</span> <span class="c-sel">id</span>=<span class="c-str">"titulo"</span><span class="c-kw">&gt;</span>Olá Mundo<span class="c-kw">&lt;/h1&gt;</span>
+<span class="c-kw">&lt;p</span> <span class="c-sel">class</span>=<span class="c-str">"descricao"</span><span class="c-kw">&gt;</span>Texto de exemplo.<span class="c-kw">&lt;/p&gt;</span>
+
+<span class="c-comment">/* Estilo CSS */</span>
+<span class="c-kw">.destaque</span> { <span class="c-sel">border</span>: 2px solid blue; <span class="c-sel">padding</span>: 10px; }
+
+<span class="c-comment">// JavaScript: Selecionando Elementos</span>
+<span class="c-kw">function</span> <span class="c-sel">manipularElementos</span>() {
+    <span class="c-comment">// 1. Selecionando pelo ID (Antigo mas eficiente)</span>
+    <span class="c-kw">const</span> elementoId = document.getElementById(<span class="c-str">'titulo'</span>);
+
+    <span class="c-comment">// 2. Selecionando pela Classe usando Query Selector (Moderno)</span>
+    <span class="c-comment">// Nota: No querySelector usamos o ponto (.) para classes</span>
+    <span class="c-kw">const</span> elementoClasse = document.querySelector(<span class="c-str">'.descricao'</span>);
+
+    <span class="c-comment">// 3. Aplicando mudanças para provar que selecionou</span>
+    elementoId.style.color = <span class="c-str">"blue"</span>;
+    elementoClasse.classList.add(<span class="c-str">'destaque'</span>);
+}</code></pre>
+    </section>
+
+    <!-- 4. ATIVIDADES -->
+    <section style="border-left: 6px solid var(--primary);">
+        <h2>4. Atividades de Fixação</h2>
+        <ul class="tasks">
+            <li><strong>Tarefa 1:</strong> No código acima, adicione uma linha para mudar o <code>innerText</code> do elemento selecionado por ID para "Título Selecionado!".</li>
+            <li><strong>Tarefa 2:</strong> Use o <code>querySelector</code> para selecionar a tag <code>&lt;strong&gt;</code> que está dentro do ID "item-unico" e mude a sua cor para vermelho.</li>
+            <li><strong>Tarefa 3:</strong> Crie um novo botão que, ao ser clicado, seleciona o <code>body</code> da página e muda o fundo (backgroundColor) para cinza claro.</li>
+            <li><strong>Tarefa 4:</strong> Crie uma função que seleciona um elemento pela classe "element-box" e muda a sua borda para "5px solid gold".</li>
+            <li><strong>Tarefa 5:</strong> Pesquise a diferença entre <code>querySelector</code> e <code>querySelectorAll</code> e tente selecionar todos os elementos com a classe "element-box" de uma vez.</li>
+        </ul>
+    </section>
+
+</div>
+
+<script>
+    // Funções de Seleção
+    const selecionarPorId = () => {
+        // Buscamos pelo ID exato
+        const el = document.getElementById('item-unico');
+        el.style.borderColor = "var(--primary)";
+        el.style.backgroundColor = "#e0f2fe";
+        el.style.transform = "scale(1.05)";
+        console.log("Elemento ID selecionado:", el);
+    };
+
+    const selecionarPorClasse = () => {
+        // Buscamos usando a sintaxe de seletor CSS (ponto para classe)
+        const el = document.querySelector('.minha-classe');
+        el.style.borderColor = "#f59e0b";
+        el.style.backgroundColor = "#fef3c7";
+        el.style.color = "#92400e";
+        console.log("Elemento Classe selecionado:", el);
+    };
+
+    const resetar = () => {
+        // Selecionamos todos os boxes para resetar o estilo
+        const boxes = document.querySelectorAll('.element-box');
+        boxes.forEach(box => {
+            box.style = "";
+        });
+        console.log("Estilos limpos.");
+    };
+</script>
+
+</body>
+</html>

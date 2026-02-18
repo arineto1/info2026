@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 04 - Escopo: Global vs Local</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #4338ca;
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text: #1e293b;
+            --danger: #f43f5e;
+            --code-bg: #0f172a;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 50px 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 0 0 24px 24px;
+            margin-bottom: 30px;
+        }
+
+        section {
+            background: var(--card);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: var(--primary);
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 10px;
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .box {
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 5px solid var(--primary);
+            background: #f1f5f9;
+        }
+
+        /* Playground */
+        .playground {
+            text-align: center;
+            border: 2px solid var(--primary);
+        }
+
+        .display-log {
+            background: #1e293b;
+            color: #38bdf8;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: left;
+            font-family: 'Fira Code', monospace;
+            min-height: 100px;
+            margin-bottom: 20px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 12px 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        button:hover { background: var(--secondary); transform: translateY(-2px); }
+
+        /* Blocos de Código Coloridos */
+        pre {
+            background: var(--code-bg);
+            color: #9cdcfe;
+            padding: 25px;
+            border-radius: 12px;
+            overflow-x: auto;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        .c-comment { color: #6a9955; }
+        .c-kw { color: #c586c0; }
+        .c-tag { color: #569cd6; }
+        .c-attr { color: #9cdcfe; }
+        .c-str { color: #ce9178; }
+        .c-style { color: #e74c3c; font-weight: bold; }
+
+        .tasks li { margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Aula 04: O Território das Variáveis</h1>
+    <p>Entendendo o Escopo Global e Local no JavaScript.</p>
+</header>
+
+<div class="container">
+
+    <!-- 1. INTRODUÇÃO -->
+    <section>
+        <h2>1. Escopo: O que é?</h2>
+        <p>O <strong>Escopo</strong> determina a visibilidade de uma variável. Imagine que o código é uma grande empresa:</p>
+        
+        <div class="concept-grid">
+            <div class="box">
+                <strong>🌍 Escopo Global:</strong>
+                <p>Variáveis criadas fora de qualquer função. Estão na "receção": todos os departamentos podem vê-las e usá-las.</p>
+            </div>
+            <div class="box">
+                <strong>🔒 Escopo Local:</strong>
+                <p>Variáveis criadas dentro de uma função. Estão numa "sala privada": só quem está dentro daquela função sabe que elas existem.</p>
+            </div>
+        </div>
+        <p><strong>Dica de Ouro:</strong> Prefira sempre o escopo local para evitar que funções diferentes alterem a mesma variável por acidente.</p>
+    </section>
+
+    <!-- 2. PRÁTICA INTERATIVA -->
+    <section class="playground">
+        <h2>2. Prática: O Teste do Escopo</h2>
+        <p>Acompanhe no log abaixo o que acontece quando tentamos aceder a variáveis em diferentes locais.</p>
+        
+        <div id="log-monitor" class="display-log">
+            > Sistema pronto para monitorização...
+        </div>
+
+        <div class="btn-group">
+            <button onclick="testeGlobal()">Ver Global</button>
+            <button onclick="testeLocal()">Criar Local</button>
+            <button onclick="tentarAcederLocal()">Tentar Ver Local de Fora</button>
+        </div>
+    </section>
+
+    <!-- 3. CÓDIGO EXEMPLO COMPLETO -->
+    <section>
+        <h2>3. Código Exemplo (Ficheiro Único Completo)</h2>
+        <p>Este código integra as três linguagens. Repara como a variável <code>usuario</code> é global e a <code>senha</code> é local:</p>
+        
+        <pre><code><span class="c-tag">&lt;!DOCTYPE html&gt;</span>
+<span class="c-tag">&lt;html</span> <span class="c-attr">lang</span>=<span class="c-str">"pt-pt"</span><span class="c-tag">&gt;</span>
+<span class="c-tag">&lt;body&gt;</span>
+
+    <span class="c-tag">&lt;h1</span> <span class="c-attr">id</span>=<span class="c-str">"status"</span><span class="c-tag">&gt;</span>Aguardando...<span class="c-tag">&lt;/h1&gt;</span>
+    <span class="c-tag">&lt;button</span> <span class="c-attr">onclick</span>=<span class="c-str">"login()"</span><span class="c-tag">&gt;</span>Entrar<span class="c-tag">&lt;/button&gt;</span>
+
+    <span class="c-style">&lt;style&gt;</span>
+        <span class="c-tag">#status</span> { <span class="c-attr">color</span>: darkblue; }
+    <span class="c-style">&lt;/style&gt;</span>
+
+    <span class="c-style">&lt;script&gt;</span>
+        <span class="c-comment">// VARIÁVEL GLOBAL: Todos podem ler e mudar</span>
+        <span class="c-kw">let</span> <span class="c-tag">usuario</span> = <span class="c-str">"Admin_Loja"</span>;
+
+        <span class="c-kw">function</span> <span class="c-tag">login</span>() {
+            <span class="c-comment">// VARIÁVEL LOCAL: Só existe dentro deste bloco { }</span>
+            <span class="c-kw">let</span> <span class="c-tag">senhaSecreta</span> = <span class="c-str">"XYZ123"</span>;
+
+            <span class="c-kw">const</span> h1 = document.getElementById(<span class="c-str">'status'</span>);
+            h1.innerText = <span class="c-str">"Bem-vindo, "</span> + <span class="c-tag">usuario</span>;
+            
+            <span class="c-comment">// Consigo ver a senha aqui dentro</span>
+            console.log(<span class="c-str">"Senha capturada: "</span> + <span class="c-tag">senhaSecreta</span>);
+        }
+
+        <span class="c-comment">// Se eu tentasse ler 'senhaSecreta' aqui fora, daria erro!</span>
+    <span class="c-style">&lt;/script&gt;</span>
+
+<span class="c-tag">&lt;/body&gt;</span>
+<span class="c-tag">&lt;/html&gt;</span></code></pre>
+    </section>
+
+    <!-- 4. ATIVIDADES -->
+    <section style="border-left: 6px solid var(--danger);">
+        <h2>4. Atividades de Fixação</h2>
+        <ul class="tasks">
+            <li><strong>Tarefa 1:</strong> Crie uma variável global chamada <code>nomeLoja</code> e faça duas funções diferentes exibirem esse nome num <code>alert</code>.</li>
+            <li><strong>Tarefa 2:</strong> Dentro de uma função, crie uma variável <code>cupom</code>. Tente exibir essa variável usando um <code>console.log</code> fora da função e observe o erro no console (F12).</li>
+            <li><strong>Tarefa 3:</strong> Crie uma variável global <code>pontos</code> começando em 0. Crie uma função <code>adicionarPonto()</code> que aumente essa variável global em +1 toda vez que for clicada.</li>
+            <li><strong>Tarefa 4:</strong> Crie uma função que tenha uma variável local com o mesmo nome de uma global. Descubra qual delas o JavaScript prioriza quando as usa dentro da função.</li>
+            <li><strong>Tarefa 5:</strong> Use <code>const</code> para criar uma variável global e tente alterá-la dentro de uma função. Observe o que acontece no console.</li>
+        </ul>
+    </section>
+
+</div>
+
+<script>
+    // VARIÁVEL GLOBAL
+    let versaoSistema = "v4.0.1";
+
+    function testeGlobal() {
+        const log = document.getElementById('log-monitor');
+        log.innerHTML += `<br>> Acedendo Global: versaoSistema = ${versaoSistema}`;
+    }
+
+    function testeLocal() {
+        // VARIÁVEL LOCAL
+        let mensagemLocal = "Segredo da Função";
+        const log = document.getElementById('log-monitor');
+        log.innerHTML += `<br>> Variável Local criada com sucesso!`;
+        log.innerHTML += `<br>> Dentro da função eu vejo: ${mensagemLocal}`;
+    }
+
+    function tentarAcederLocal() {
+        const log = document.getElementById('log-monitor');
+        log.innerHTML += `<br>> <span style="color:var(--danger)">ERRO: Tentando ler 'mensagemLocal' de fora...</span>`;
+        
+        try {
+            // Isto vai falhar porque mensagemLocal não existe neste escopo
+            console.log(mensagemLocal);
+        } catch (erro) {
+            log.innerHTML += `<br>> Log do Erro: mensagemLocal is not defined.`;
+        }
+    }
+</script>
+
+</body>
+</html>

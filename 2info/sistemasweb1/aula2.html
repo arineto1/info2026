@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistemas Web 1 - Aula 02: Variáveis e Constantes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;600;700&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; }
+        
+        pre, code { 
+            font-family: 'Fira Code', monospace; 
+            font-size: 14px; 
+            line-height: 1.5;
+        }
+        
+        /* Cores para o destaque de código - TEXTO AGORA SELECIONÁVEL */
+        .code-container {
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            /* Cópia permitida */
+            user-select: text;
+            -webkit-user-select: text;
+        }
+
+        .comment { color: #6a9955; font-style: italic; }
+        .keyword { color: #569cd6; }
+        .string { color: #ce9178; }
+        .function { color: #dcdcaa; }
+        .number { color: #b5cea8; }
+
+        #console-ui {
+            background-color: #0d1117;
+            border: 1px solid #30363d;
+            height: 380px;
+            overflow-y: auto;
+            font-size: 13px;
+        }
+
+        #console-ui::-webkit-scrollbar { width: 8px; }
+        #console-ui::-webkit-scrollbar-thumb { background: #30363d; border-radius: 4px; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+
+    <header class="bg-slate-900 text-white shadow-2xl border-b-4 border-emerald-500">
+        <div class="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div>
+                <h1 class="text-4xl font-black tracking-tighter text-white uppercase">SISTEMAS WEB 1 <span class="text-emerald-400">/ 2026</span></h1>
+                <p class="text-slate-400 mt-2 text-lg italic font-light uppercase tracking-widest">Aula 02: Armazenando Dados com let e const</p>
+            </div>
+            <div class="bg-slate-800 border border-slate-700 px-8 py-4 rounded-2xl shadow-inner text-center">
+                <p class="text-xs text-slate-400 font-bold uppercase">Módulo 01</p>
+                <div class="w-32 h-2 bg-slate-950 rounded-full mt-2 overflow-hidden">
+                    <div class="w-2/3 h-full bg-emerald-400"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto p-6 grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <!-- COLUNA DE CONTEÚDO (TEORIA E EXERCÍCIOS) -->
+        <div class="lg:col-span-4 space-y-6">
+            <section class="bg-white p-8 rounded-3xl shadow-sm border border-slate-200">
+                <h2 class="text-xl font-bold text-slate-800 mb-6 flex items-center gap-2 border-b-2 border-slate-50 pb-2">
+                    <span class="bg-emerald-100 p-2 rounded-lg">📦</span> Definições
+                </h2>
+                <div class="space-y-4 text-sm text-slate-600">
+                    <p class="bg-slate-50 p-3 rounded-xl"><strong>Variáveis (let):</strong> Usadas para valores que mudam ao longo do tempo, como o saldo de uma conta ou o nível de um jogador.</p>
+                    <p class="bg-slate-50 p-3 rounded-xl"><strong>Constantes (const):</strong> Usadas para valores que nunca mudam, como o seu CPF, uma URL de API ou o nome da empresa.</p>
+                    <p class="bg-slate-50 p-3 rounded-xl"><strong>Declaração:</strong> Criamos a "caixa" uma única vez. Depois, apenas usamos o nome dela para acessar o valor.</p>
+                </div>
+            </section>
+
+            <section class="bg-white p-8 rounded-3xl shadow-sm border border-slate-200">
+                <h2 class="text-xl font-bold text-orange-600 mb-6 flex items-center gap-2 border-b-2 border-orange-50 pb-2">
+                    <span class="bg-orange-100 p-2 rounded-lg">🎯</span> Atividades Práticas
+                </h2>
+                
+                <div class="space-y-4">
+                    <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200">
+                        <h4 class="text-[10px] font-black text-emerald-600 uppercase mb-1 italic tracking-widest leading-none">Exercício 01</h4>
+                        <p class="text-xs text-slate-700 leading-tight">Crie uma <code>const</code> para armazenar o nome de um país e exiba no console.</p>
+                    </div>
+
+                    <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200">
+                        <h4 class="text-[10px] font-black text-emerald-600 uppercase mb-1 italic tracking-widest leading-none">Exercício 02</h4>
+                        <p class="text-xs text-slate-700 leading-tight">Crie uma variável <code>let</code> chamada "preco" com o valor 100. Na linha de baixo, mude o valor para 150 e exiba.</p>
+                    </div>
+
+                    <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200">
+                        <h4 class="text-[10px] font-black text-emerald-600 uppercase mb-1 italic tracking-widest leading-none">Exercício 03</h4>
+                        <p class="text-xs text-slate-700 leading-tight">Declare sua idade como <code>let</code> e o seu ano de nascimento como <code>const</code>. Exiba ambos em um único log.</p>
+                    </div>
+
+                    <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200">
+                        <h4 class="text-[10px] font-black text-orange-600 uppercase mb-1 italic tracking-widest leading-none">Exercício 04</h4>
+                        <p class="text-xs text-slate-700 leading-tight">Crie duas variáveis de números e uma terceira chamada "resultado" que armazene a soma das duas. Exiba o resultado.</p>
+                    </div>
+
+                    <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200">
+                        <h4 class="text-[10px] font-black text-orange-600 uppercase mb-1 italic tracking-widest leading-none">Exercício 05</h4>
+                        <p class="text-xs text-slate-700 leading-tight">Tente mudar o valor de uma <code>const</code> e observe o erro "Assignment to constant variable" no console (F12).</p>
+                    </div>
+
+                    <div class="bg-red-50 p-4 rounded-2xl border border-red-100">
+                        <h4 class="text-[10px] font-black text-red-600 uppercase mb-1 italic tracking-widest leading-none">Exercício 06 (Desafio)</h4>
+                        <p class="text-xs text-red-800 leading-tight font-medium italic">Crie um sistema de estoque simples: declare "produto", "quantidade" e "valorUnitario". Exiba o valor total do estoque multiplicando quantidade por valor.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- COLUNA DE CÓDIGO (LIVRE PARA CÓPIA) -->
+        <div class="lg:col-span-8 space-y-6">
+            
+            <section class="bg-white p-1 rounded-3xl shadow-xl border border-slate-200 overflow-hidden">
+                <div class="bg-slate-900 px-8 py-4 flex justify-between items-center border-b border-white/10">
+                    <h2 class="text-sm font-bold text-white uppercase tracking-widest italic">Exemplo de Código (Livre para Copiar)</h2>
+                    <div class="flex gap-1.5 text-xs text-slate-500 font-mono">
+                        <span>Linguagem: JS</span>
+                    </div>
+                </div>
+                
+                <div id="code-area" class="p-8 code-container overflow-x-auto">
+<pre><code><span class="comment">// --- 1. DECLARANDO CONSTANTES ---</span>
+<span class="comment">// Valores que não mudam (identificadores fixos)</span>
+<span class="keyword">const</span> <span class="function">app_name</span> = <span class="string">"Sistema de Vendas"</span>;
+<span class="keyword">const</span> <span class="function">versao</span> = <span class="number">1.0</span>;
+
+<span class="function">console</span>.log(<span class="string">"Iniciando:"</span>, <span class="function">app_name</span>);
+
+<span class="comment">// --- 2. DECLARANDO VARIÁVEIS ---</span>
+<span class="comment">// Valores que podem ser atualizados</span>
+<span class="keyword">let</span> <span class="function">usuario</span> = <span class="string">"Convidado"</span>;
+<span class="keyword">let</span> <span class="function">pontuacao</span> = <span class="number">0</span>;
+
+<span class="function">console</span>.log(<span class="string">"Usuário atual:"</span>, <span class="function">usuario</span>);
+
+<span class="comment">// --- 3. ATUALIZANDO VALORES ---</span>
+<span class="comment">// Não usamos 'let' novamente para atualizar, apenas o nome</span>
+<span class="function">usuario</span> = <span class="string">"Ricardo Silva"</span>;
+<span class="function">pontuacao</span> = <span class="function">pontuacao</span> + <span class="number">50</span>;
+
+<span class="function">console</span>.log(<span class="string">"Novo status:"</span>, <span class="function">usuario</span>, <span class="string">"com"</span>, <span class="function">pontuacao</span>, <span class="string">"pontos"</span>);
+
+<span class="comment">// --- 4. TRABALHANDO COM NÚMEROS ---</span>
+<span class="keyword">let</span> <span class="function">base</span> = <span class="number">10</span>;
+<span class="keyword">let</span> <span class="function">altura</span> = <span class="number">5</span>;
+<span class="keyword">let</span> <span class="function">area</span> = <span class="function">base</span> * <span class="function">altura</span>;
+
+<span class="function">console</span>.log(<span class="string">"A área do retângulo é:"</span>, <span class="function">area</span>);
+
+<span class="comment">// --- 5. O QUE NÃO FAZER (ERRO) ---</span>
+<span class="comment">// Descomente a linha abaixo para ver o erro no console:</span>
+<span class="comment">// versao = 2.0; // Erro! Constantes não podem ser alteradas</span>
+</code></pre>
+                </div>
+            </section>
+
+            <section class="bg-white p-8 rounded-3xl shadow-xl border border-slate-200">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-sm font-black text-slate-400 uppercase tracking-widest">Memória do Sistema (Live View)</h2>
+                    <span class="flex h-3 w-3 relative">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+                    </span>
+                </div>
+                <div id="console-ui" class="rounded-2xl p-6 font-mono shadow-inner space-y-3">
+                    <!-- Gerado automaticamente via JS -->
+                </div>
+                <div class="mt-6 flex flex-col md:flex-row items-center justify-between gap-4">
+                    <div class="flex items-center gap-2 text-[10px] text-slate-400 font-bold uppercase">
+                        <span class="w-2 h-2 bg-emerald-500 rounded-full"></span>
+                        Alocação de Memória Dinâmica
+                    </div>
+                    <button onclick="window.location.reload()" class="w-full md:w-auto bg-slate-900 hover:bg-slate-800 text-white text-[10px] px-6 py-3 rounded-xl transition-all font-black uppercase tracking-widest shadow-lg shadow-slate-200">
+                        LIMPAR MEMÓRIA
+                    </button>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script>
+        // O bloqueio de cópia e clique direito foi removido.
+        
+        // --- SIMULADOR DE CONSOLE ---
+        const consoleUI = document.getElementById('console-ui');
+
+        function printToUI(msg, type = 'log') {
+            const line = document.createElement('div');
+            line.className = 'border-b border-gray-800/50 pb-2 transition-all duration-500 opacity-0 transform translate-x-2';
+            
+            let colorClass = 'text-emerald-400';
+            let icon = '📦';
+
+            if (type === 'update') { colorClass = 'text-blue-400'; icon = '🔄'; }
+            if (type === 'const') { colorClass = 'text-purple-400'; icon = '🔒'; }
+
+            line.innerHTML = `<span class="${colorClass} font-bold mr-3">${icon}</span> <span class="text-slate-300 font-medium">${msg}</span>`;
+            consoleUI.appendChild(line);
+            
+            setTimeout(() => {
+                line.classList.remove('opacity-0', 'translate-x-2');
+            }, 50);
+
+            consoleUI.scrollTop = consoleUI.scrollHeight;
+        }
+
+        // Execução simulada da Aula 02
+        const steps = [
+            { m: "Definindo constante: app_name = 'Sistema de Vendas'", t: "const" },
+            { m: "Alocando variável let: usuario = 'Convidado'", t: "log" },
+            { m: "Alocando variável let: pontuacao = 0", t: "log" },
+            { m: "Atualizando variável: usuario = 'Ricardo Silva'", t: "update" },
+            { m: "Somando pontuação: pontuacao = 50", t: "update" },
+            { m: "Calculando área: 10 * 5 = 50", t: "log" },
+            { m: "Monitor de memória: 100% OK", t: "log" }
+        ];
+
+        steps.forEach((step, index) => {
+            setTimeout(() => {
+                printToUI(step.m, step.t);
+            }, 700 * (index + 1));
+        });
+    </script>
+</body>
+</html>

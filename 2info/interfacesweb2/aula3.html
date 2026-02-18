@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 03 - O Comando Return</title>
+    <style>
+        :root {
+            --primary: #8b5cf6;
+            --secondary: #6d28d9;
+            --bg: #fdf2ff;
+            --card: #ffffff;
+            --text: #1e1b4b;
+            --accent: #10b981;
+            --code-bg: #111827;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.2);
+        }
+
+        section {
+            background: var(--card);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: var(--primary);
+            border-bottom: 2px solid #f5f3ff;
+            padding-bottom: 10px;
+        }
+
+        .concept-box {
+            background: #f5f3ff;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 5px solid var(--primary);
+        }
+
+        /* Playground */
+        .calculator-ui {
+            background: #fff;
+            border: 2px solid var(--primary);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .display-result {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin: 20px 0;
+            padding: 15px;
+            background: #f0fdf4;
+            border-radius: 10px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        input {
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            width: 150px;
+            font-size: 1rem;
+        }
+
+        button {
+            padding: 12px 25px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        button:hover { background: var(--secondary); transform: scale(1.05); }
+
+        /* Blocos de Código Coloridos */
+        pre {
+            background: var(--code-bg);
+            color: #d4d4d4;
+            padding: 25px;
+            border-radius: 12px;
+            overflow-x: auto;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .c-comment { color: #6a9955; }
+        .c-kw { color: #c586c0; }
+        .c-tag { color: #569cd6; }
+        .c-attr { color: #9cdcfe; }
+        .c-str { color: #ce9178; }
+        .c-style { color: #e74c3c; font-weight: bold; }
+        .c-ret { color: #fbbf24; font-weight: bold; }
+
+        .tasks-list li { margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Aula 03: O Retorno das Funções</h1>
+    <p>Aprendendo a capturar resultados processados pelas nossas funções.</p>
+</header>
+
+<div class="container">
+
+    <!-- 1. INTRODUÇÃO -->
+    <section>
+        <h2>1. O Comando "return"</h2>
+        <div class="concept-box">
+            <p>Muitas vezes, não queremos que a função apenas "faça algo" no ecrã, mas sim que ela <strong>calcule um valor</strong> e o devolva para que possamos usá-lo mais tarde.</p>
+            <p>Pense numa <strong>Calculadora de Bolso</strong>:</p>
+            <ul>
+                <li>Você digita os números (Argumentos).</li>
+                <li>A calculadora processa a conta (Lógica interna).</li>
+                <li>O visor mostra o resultado (Este é o <code>return</code> da função).</li>
+            </ul>
+        </div>
+        <p>O <code>return</code> encerra a função e envia o dado de volta para quem a chamou.</p>
+    </section>
+
+    <!-- 2. PRÁTICA INTERATIVA -->
+    <section class="calculator-ui">
+        <h2>2. Prática: Calculadora de IVA (23%)</h2>
+        <p>Introduza o valor base. O JavaScript irá calcular o IVA e <strong>retornar</strong> o total final.</p>
+        
+        <div class="input-group">
+            <input type="number" id="preco-base" placeholder="Preço Base (ex: 100)">
+            <button onclick="executarCalculo()">Calcular Total</button>
+        </div>
+
+        <div id="resultado-final" class="display-result">
+            0.00€
+        </div>
+        <p><small>A função <code>calcularIva</code> processa o valor e "entrega" o resultado ao visor.</small></p>
+    </section>
+
+    <!-- 3. CÓDIGO EXEMPLO COMPLETO -->
+    <section>
+        <h2>3. Código Exemplo (Ficheiro Completo)</h2>
+        <p>Este é o modelo completo de como as três linguagens trabalham juntas num único ficheiro:</p>
+        
+        <pre><code><span class="c-tag">&lt;!DOCTYPE html&gt;</span>
+<span class="c-tag">&lt;html</span> <span class="c-attr">lang</span>=<span class="c-str">"pt-pt"</span><span class="c-tag">&gt;</span>
+<span class="c-tag">&lt;head&gt;</span>
+    <span class="c-tag">&lt;title&gt;</span>Exemplo Return<span class="c-tag">&lt;/title&gt;</span>
+    <span class="c-style">&lt;style&gt;</span>
+        <span class="c-comment">/* CSS: Visual do resultado */</span>
+        <span class="c-tag">#visor</span> { <span class="c-attr">font-size</span>: 20px; <span class="c-attr">color</span>: green; <span class="c-attr">font-weight</span>: bold; }
+    <span class="c-style">&lt;/style&gt;</span>
+<span class="c-tag">&lt;/head&gt;</span>
+<span class="c-tag">&lt;body&gt;</span>
+
+    <span class="c-comment">&lt;!-- Estrutura HTML --&gt;</span>
+    <span class="c-tag">&lt;input</span> <span class="c-attr">id</span>=<span class="c-str">"valor"</span> <span class="c-attr">type</span>=<span class="c-str">"number"</span><span class="c-tag">&gt;</span>
+    <span class="c-tag">&lt;button</span> <span class="c-attr">onclick</span>=<span class="c-str">"mostrarResultado()"</span><span class="c-tag">&gt;</span>Calcular<span class="c-tag">&lt;/button&gt;</span>
+    <span class="c-tag">&lt;div</span> <span class="c-attr">id</span>=<span class="c-str">"visor"</span><span class="c-tag">&gt;</span>0.00€<span class="c-tag">&lt;/div&gt;</span>
+
+    <span class="c-style">&lt;script&gt;</span>
+        <span class="c-comment">// 1. Função que PROCESSA e RETORNA um dado</span>
+        <span class="c-kw">function</span> <span class="c-tag">calcularIva</span>(preco) {
+            <span class="c-kw">const</span> total = preco * 1.23;
+            <span class="c-ret">return</span> total; <span class="c-comment">// Envia o valor para fora da função</span>
+        }
+
+        <span class="c-comment">// 2. Função que INTERAGE com o HTML</span>
+        <span class="c-kw">function</span> <span class="c-tag">mostrarResultado</span>() {
+            <span class="c-kw">const</span> input = document.getElementById(<span class="c-str">'valor'</span>);
+            <span class="c-kw">const</span> visor = document.getElementById(<span class="c-str">'visor'</span>);
+
+            <span class="c-comment">// Chamamos a função e GUARDAMOS o retorno numa variável</span>
+            <span class="c-kw">let</span> resultadoFinal = <span class="c-tag">calcularIva</span>(input.value);
+
+            <span class="c-comment">// Usamos o valor que a função nos devolveu</span>
+            visor.innerText = resultadoFinal.toFixed(2) + <span class="c-str">"€"</span>;
+        }
+    <span class="c-style">&lt;/script&gt;</span>
+
+<span class="c-tag">&lt;/body&gt;</span>
+<span class="c-tag">&lt;/html&gt;</span></code></pre>
+    </section>
+
+    <!-- 4. ATIVIDADES -->
+    <section style="border-left: 6px solid var(--accent);">
+        <h2>4. Atividades de Fixação</h2>
+        <ul class="tasks-list">
+            <li><strong>Tarefa 1:</strong> Altere a função <code>calcularIva</code> para que receba um segundo parâmetro chamado <code>taxa</code>, permitindo calcular diferentes impostos (ex: 1.06 ou 1.13).</li>
+            <li><strong>Tarefa 2:</strong> Crie uma função chamada <code>converterMoeda(valorDolar)</code> que retorne o valor convertido para Euros (multiplicando por 0.92).</li>
+            <li><strong>Tarefa 3:</strong> Crie uma função <code>gerarSaudacao(nome)</code> que retorne a frase "Olá, [nome]! Pronto para comprar?" e a exiba num <code>alert</code>.</li>
+            <li><strong>Tarefa 4:</strong> Adicione um botão "Desconto de 10%" que chame uma função com retorno para calcular o novo preço.</li>
+            <li><strong>Tarefa 5:</strong> Crie uma função <code>verificarEstoque(quantidade)</code> que retorne a palavra "DISPONÍVEL" se a quantidade for maior que zero, ou "ESGOTADO" caso contrário.</li>
+        </ul>
+    </section>
+
+</div>
+
+<script>
+    function calcularIva(preco) {
+        if (preco <= 0) return 0;
+        const taxa = 1.23;
+        return preco * taxa;
+    }
+
+    function executarCalculo() {
+        const inputPreco = document.getElementById('preco-base');
+        const display = document.getElementById('resultado-final');
+        
+        const valorDigitado = Number(inputPreco.value);
+        const total = calcularIva(valorDigitado);
+        
+        display.innerText = total.toLocaleString('pt-PT', { style: 'currency', currency: 'EUR' });
+        console.log("Sistema: Retorno capturado e exibido com sucesso.");
+    }
+</script>
+
+</body>
+</html>
